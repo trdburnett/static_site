@@ -29,7 +29,7 @@ class TestTextNode(unittest.TestCase):
 
     def test_neq_url(self):
         node = TextNode("This is a text node", TextType.LINK, "https://www.boot.dev")
-        node2 = TextNode("This is a text node", TestType.LINK, "https://www.shoe.com")
+        node2 = TextNode("This is a text node", TextType.LINK, "https://www.shoe.com")
         self.assertNotEqual(node,node2)
 
 if __name__ == "__main__":
