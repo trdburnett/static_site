@@ -10,7 +10,7 @@ class HTMLNode():
     
     def props_to_html(self):
         resultstring = ""
-        if len(self.props) == 0:
+        if not self.props:
             return resultstring
         else:
             for prop in self.props:
