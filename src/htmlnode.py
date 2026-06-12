@@ -13,9 +13,9 @@ class HTMLNode():
         if not self.props:
             return resultstring
         else:
-            for prop in self.props:
-                resultstring.append(" ")
-                resultstring.append(prop)
+            for k,v in self.props:
+                resultstring = resultstring + " "
+                resultstring = resultstring + k + v
             return resultstring
         
     def __repr__(self):
