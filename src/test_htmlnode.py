@@ -11,6 +11,4 @@ class TestHTMLNode(unittest.TestCase):
         assert(testnode.props_to_html() == "href\"https://www.google.com\" target=\"_blank")
 
 if __name__ == "__main__":
-    testnode = HTMLNode(props={"href": "https://www.google.com", "target": "_blank"})
-    print(testnode.props_to_html())
     unittest.main()
