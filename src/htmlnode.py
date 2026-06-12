@@ -15,7 +15,7 @@ class HTMLNode():
         else:
             for k,v in self.props.items():
                 resultstring = resultstring + " "
-                resultstring = resultstring + k + v
+                resultstring = resultstring + k + "=" + v
             return resultstring
         
     def __repr__(self):
