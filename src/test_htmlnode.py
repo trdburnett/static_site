@@ -17,7 +17,7 @@ class TestHTMLNode(unittest.TestCase):
 
     def test_leaf_to_html_p(self):
         testnode = LeafNode("p", "Hello, world!")
-        expected = "<p>Hello, world!"
+        expected = "<p>Hello, world!</p>"
         self.assertEqual(testnode.to_html(), expected)
 
     def test_leaf_to_html_no_tag(self):
