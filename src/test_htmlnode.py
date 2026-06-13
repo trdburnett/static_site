@@ -12,10 +12,8 @@ class TestHTMLNode(unittest.TestCase):
 
     def test_repr(self):
         testnode = HTMLNode("p", "hello", None, {"class": "primary"})
-        self.assertEqual(
-            repr(testnode),
-            "HTML_Node(p, hello, children: None, {"class": "primary"})"
-        )
+        expected = "HTML_Node(p, hello, children: None, {\"class\": \"primary\"})"
+        self.assertEqual(repr(testnode), expected)
 
 if __name__ == "__main__":
     unittest.main()
