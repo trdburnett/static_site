@@ -1,3 +1,4 @@
-from htmlnode import HTMLNode
-testnode = HTMLNode(props={"href": "https://www.google.com", "target": "_blank"})
-print(testnode.props_to_html())
+from htmlnode import HTMLNode, LeafNode
+testnode = LeafNode("p", "Hello, world!")
+print(testnode.tag)
+print(testnode.value)
