@@ -27,7 +27,8 @@ class TestHTMLNode(unittest.TestCase):
 
     def test_leaf_to_html_no_value(self):
         testnode = LeafNode(None, None)
-        with self.assertRaises(ValueError, testnode.to_html())
+        with self.assertRaises(ValueError):
+            testnode.to_html()
 
 if __name__ == "__main__":
     unittest.main()
