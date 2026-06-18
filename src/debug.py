@@ -1,6 +1,6 @@
 from htmlnode import HTMLNode, LeafNode, ParentNode
-child_node = LeafNode("span", "child")
-parent_node = ParentNode("div", [child_node])
-print(parent_node.children)
-print(parent_node.tag)
-#print(parent_node.to_html())
+from textnode import TextNode, text_node_to_html_node, TextType
+node = TextNode("This is a text node", TextType.TEXT)
+html_node = text_node_to_html_node(node)
+print(node.text_type)
+print(html_node)

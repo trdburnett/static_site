@@ -25,7 +25,7 @@ class TextNode():
 def text_node_to_html_node(text_node: TextNode) -> LeafNode:
     if text_node.text_type is not TextType:
         raise(Exception("Invalid Text Type"))
-    if text_node.text_type == TEXT:
+    if text_node.text_type == "text":
         return LeafNode(tag=None, value=text_node.text)
     if text_node.text_type == "bold":
         return LeafNode(tag="b", value=text_node.text)
