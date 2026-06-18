@@ -1,4 +1,4 @@
-from htmlnode import HTMLNode, LeafNode
-testnode = LeafNode("p", "Hello, world!")
-print(testnode.tag)
-print(testnode.value)
+from htmlnode import HTMLNode, LeafNode, ParentNode
+child_node = LeafNode("span", "child")
+parent_node = ParentNode("div", [child_node])
+print(parent_node.to_html())
