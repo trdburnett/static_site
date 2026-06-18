@@ -43,6 +43,26 @@ class TestHTMLNode(unittest.TestCase):
             parent_node.to_html(),
             "<div><span><b>grandchild</b></span></div>",
         )
+    
+    def test_to_html_no_tag(self):
+        child_node = LeafNode("span", "child")
+        parent_node = ParentNode(None,[child_node])
+        with self.assertRaises(ValueError):
+            parent_node.to_html()
+
+    def test_to_html_no_tag(self):
+        parent_node = ParentNode("a", None)
+        with self.assertraises(ValueError):
+            parent_node.to_html()
+
+    def test_to_html_multiple_children(self):
+        child_node = LeafNode("h1", "child")
+        child_node2 = LeafNode("h2", "second child")
+        parent_node = ParentNode("body" ,[child_node, child_node2])
+        self.assertEqual(
+            parent_node.to_html(),
+            "<body><h1>child</h1><h2>second child</h2></body>"
+        )
 
 if __name__ == "__main__":
     unittest.main()
