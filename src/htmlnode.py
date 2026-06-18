@@ -46,5 +46,8 @@ class ParentNode(HTMLNode):
         if self.children == None:
             raise(ValueError("This parents children are missing"))
         else:
-            return f"<{self.tag}>{self.children[0].to_html()}</{self.tag}>"
+            html = ""
+            for child in self.children:
+                html += child.to_html()
+            return f"<{self.tag}>{html}</{self.tag}>"
         
