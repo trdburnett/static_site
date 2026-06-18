@@ -52,7 +52,7 @@ class TestHTMLNode(unittest.TestCase):
 
     def test_to_html_no_tag(self):
         parent_node = ParentNode("a", None)
-        with self.assertraises(ValueError):
+        with self.assertRaises(ValueError):
             parent_node.to_html()
 
     def test_to_html_multiple_children(self):
