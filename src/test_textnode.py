@@ -71,6 +71,7 @@ class TestTextNode(unittest.TestCase):
 
     def test_link_none(self):
         node = TextNode("This is a link node", TextType.LINK)
+        html_node = text_node_to_html_node(node)
         self.assertEqual(html_node.tag, "a")
         self.assertEqual(html_node.value, "This is a link node")
         self.assertEqual(html_node.props, {'href': 'None'})
