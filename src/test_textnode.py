@@ -67,7 +67,7 @@ class TestTextNode(unittest.TestCase):
         html_node = text_node_to_html_node(node)
         self.assertEqual(html_node.tag, "a")
         self.assertEqual(html_node.value, "This is a link node")
-        self.assertEqual(html_node.props, "href=www.google.co.uk")
+        self.assertEqual(html_node.props, {'href': 'www.google.co.uk'})
 
 
 if __name__ == "__main__":
