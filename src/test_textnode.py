@@ -33,10 +33,10 @@ class TestTextNode(unittest.TestCase):
         node2 = TextNode("This is a text node", TextType.LINK, "https://www.shoe.com")
         self.assertNotEqual(node,node2)
 
-    #def test_invalid_text_type(self):
-    #    node = TextNode("This is a faulty text node", TextType.INVALID)
-    #    with self.assertRaises(Exception):
-    #        html_node = text_node_to_html_node(node)
+    def test_invalid_text_type(self):
+        node = TextNode("This is a faulty text node", TextType.INVALID)
+        with self.assertRaises(Exception):
+            html_node = text_node_to_html_node(node)
         
     def test_text(self):
         node = TextNode("This is a text node", TextType.TEXT)
