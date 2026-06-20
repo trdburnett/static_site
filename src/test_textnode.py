@@ -76,6 +76,13 @@ class TestTextNode(unittest.TestCase):
         self.assertEqual(html_node.value, "This is a link node")
         self.assertEqual(html_node.props, {'href': None})
 
+    def test_image_valid(self):
+        node = TextNode("This is an image node", TextType.IMAGE, url="www.example.com")
+        html_node = text_node_to_html_node(node)
+        self.assertEqual(html_node.tag, "img")
+        self.assertEqual(html_node.value, "")
+        self.assertEqual(html_node.props, {'src': 'www.example.com', 'alt': 'This is an image node'})
+
 
 if __name__ == "__main__":
     unittest.main()
