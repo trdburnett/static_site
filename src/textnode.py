@@ -23,7 +23,7 @@ class TextNode():
         return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
 
 def text_node_to_html_node(text_node: TextNode) -> LeafNode:
-    if not hasattr(TextType, text_node.text_type):
+    if not isinstance(text_node.text_type, TextType):
         raise(Exception("Invalid Text Type"))
     if text_node.text_type == TextType.TEXT:
         return LeafNode(tag=None, value=text_node.text)
