@@ -34,7 +34,7 @@ class TestTextNode(unittest.TestCase):
         self.assertNotEqual(node,node2)
 
     def test_invalid_text_type(self):
-        node = TextNode("This is a faulty text node", TextType.INVALID)
+        node = TextNode("This is a faulty text node", "invalid")
         with self.assertRaises(Exception):
             html_node = text_node_to_html_node(node)
         
