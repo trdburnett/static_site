@@ -7,3 +7,5 @@ def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: 
         else:
             text = node.text.split(delimiter)
             print(text)
+
+split_nodes_delimiter([TextNode("This is text with a `code block` word", TextType.TEXT)], "`", TextType.CODE)
