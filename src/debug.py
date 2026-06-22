@@ -25,7 +25,8 @@ def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: 
                         if char == delimiter[0]:
                             check_next_char = True
                             print("found first half of delimiter")
-            if len(delimiter) == 1:        
+            if len(delimiter) == 1:
+                print("length of delimiter is 1")        
                 for char in node.text:
                     if char == delimiter:
                         delimiter_count += 1
