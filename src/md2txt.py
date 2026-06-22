@@ -39,8 +39,8 @@ def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: 
     return new_nodes
 
 def extract_markdown_images(text: str) -> list[tuple]:
-    alt_text = re.findall(r"!\[\w+\]")
-    url = re.findall(r"\(https:\/\/.*?\)")
+    alt_text = re.findall(r"!\[\w+\]",text)
+    url = re.findall(r"\(https:\/\/.*?\)",text)
     print(alt_text)
     print(url)
 
