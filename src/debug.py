@@ -1,6 +1,21 @@
 from htmlnode import HTMLNode, LeafNode, ParentNode
 from textnode import TextNode, text_node_to_html_node, TextType
-node = TextNode("This is a link node", TextType.LINK, url="www.google.co.uk")
-print(node)
-html_node = LeafNode(tag="a", value="This is a link node", props={"href": "www.google.co.uk"})
-print(html_node)
+text = "This is text with a *bold** word"
+delimiter = "**"
+delimiter_count = 0
+if len(delimiter) == 2:
+    check_next_char = False
+    for char in text:
+        if not check_next_char: 
+            if char == delimiter[0]:
+                check_next_char = True
+            if check_next_char:
+                if char == delimiter[1]:
+                    delimiter_count +=1
+                check_next_char = False
+if len(delimiter) == 1:        
+    for char in text:
+        if char == delimiter:
+            delimiter_count += 1
+if delimiter_count % 2 != 0:
+    print("Hi!")
