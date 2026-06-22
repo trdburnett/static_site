@@ -43,3 +43,9 @@ delimiter = "**"
 text_type = TextType.BOLD
 new_nodes = split_nodes_delimiter(old_nodes,delimiter,text_type)
 print(new_nodes)
+
+old_nodes = [TextNode("This is text with a **bold** word", TextType.TEXT)]
+delimiter = "**"
+text_type = TextType.BOLD
+new_nodes = split_nodes_delimiter(old_nodes,delimiter,text_type)
+print(new_nodes)
