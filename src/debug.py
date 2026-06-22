@@ -13,9 +13,11 @@ if len(delimiter) == 2:
                 if char == delimiter[1]:
                     delimiter_count +=1
                 check_next_char = False
+print(delimiter_count)
 if len(delimiter) == 1:        
     for char in text:
         if char == delimiter:
             delimiter_count += 1
+print(delimiter_count)
 if delimiter_count % 2 != 0:
     print("Hi!")
