@@ -12,6 +12,7 @@ def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: 
             if len(delimiter) > 2:
                 raise Exception("Invalid Delimiter")
             if len(delimiter) == 2:
+                print("length of delimiter is 2")
                 check_next_char = False
                 for char in node.text:
                     if check_next_char:
