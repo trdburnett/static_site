@@ -17,10 +17,13 @@ def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: 
                     if check_next_char:
                         if char == delimiter[1]:
                             delimiter_count +=1
+                            print("found second half of delimiter")
                         check_next_char = False
+                        print("set check next char to false")
                     if not check_next_char: 
                         if char == delimiter[0]:
                             check_next_char = True
+                            print("found first half of delimiter")
             if len(delimiter) == 1:        
                 for char in node.text:
                     if char == delimiter:
