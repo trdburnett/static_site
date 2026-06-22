@@ -12,12 +12,12 @@ if len(delimiter) == 2:
             if char == delimiter[0]:
                 check_next_char = True
                 print("Found first half of delimiter")
-            if check_next_char:
-                if char == delimiter[1]:
-                    print("Found second hald of delimiter")
-                    delimiter_count +=1
-                print("setting check next char to false")    
-                check_next_char = False
+        if check_next_char:
+            if char == delimiter[1]:
+                print("Found second hald of delimiter")
+                delimiter_count +=1
+            print("setting check next char to false")    
+            check_next_char = False
 print(delimiter_count)
 if len(delimiter) == 1:        
     for char in text:
