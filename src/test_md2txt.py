@@ -35,7 +35,7 @@ class Testmd2txt(unittest.TestCase):
     
     def test_code_valid_2_items_1_with_2_blocks(self):
         old_nodes = [TextNode("This is text with a `code block` word", TextType.TEXT),
-                     TextNode("This is text with a `code block` here and a `code block` there")]
+                     TextNode("This is text with a `code block` here and a `code block` there", TextType.TEXT)]
         delimiter = "`"
         text_type = TextType.CODE
         new_nodes = split_nodes_delimiter(old_nodes,delimiter,text_type)
