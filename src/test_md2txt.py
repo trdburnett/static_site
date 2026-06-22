@@ -17,9 +17,23 @@ class Testmd2txt(unittest.TestCase):
         with self.assertRaises(Exception):
             new_nodes = split_nodes_delimiter(old_nodes,delimiter,text_type)
 
+    def test_bold_odd_delimiter(self):
+        old_nodes = [TextNode("This is text with a *bold** word", TextType.BOLD)]
+        delimiter = "**"
+        text_type = TextType.BOLD
+        with self.assertRaises(Exception):
+            new_nodes = split_nodes_delimiter(old_nodes,delimiter,text_type)
+
     def test_no_delimiter_found(self):
         old_nodes = [TextNode("This is text with a code block word", TextType.TEXT)]
         delimiter = "`"
+        text_type = TextType.CODE
+        with self.assertRaises(Exception):
+            new_nodes = split_nodes_delimiter(old_nodes,delimiter,text_type)
+
+    def test_invalid_delimiter(self):
+        old_nodes = [TextNode("This is text with an ```invalid demiliter```", TextType.TEXT)]
+        delimiter = "```"
         text_type = TextType.CODE
         with self.assertRaises(Exception):
             new_nodes = split_nodes_delimiter(old_nodes,delimiter,text_type)
@@ -58,6 +72,13 @@ class Testmd2txt(unittest.TestCase):
                                      TextNode("code block", TextType.CODE),
                                      TextNode(" word", TextType.TEXT),
                                      TextNode("`print(\"Hello World!\")`", TextType.CODE)])
+        
+    def test_code_1_item_already_code(self):
+        old_nodes = [TextNode("`print(\"Hello World!\")`", TextType.CODE)]
+        delimiter = "`"
+        text_type = TextType.CODE
+        new_nodes = split_nodes_delimiter(old_nodes,delimiter,text_type)
+        self.assertEqual(new_nodes, [TextNode("`print\"Hello World!\"`", TextType.CODE)])
         
     def test_bold_valid_1_item(self):
         old_nodes = [TextNode("This is text with a **bold** word", TextType.TEXT)]
