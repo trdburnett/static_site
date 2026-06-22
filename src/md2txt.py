@@ -15,7 +15,7 @@ def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: 
             else:
                 text = node.text.split(delimiter,maxsplit=(delimiter_count))
                 for i in range(0,len(text)):
-                    if i % 2 != 0:
+                    if i % 2 == 0:
                         new_nodes.append(TextNode(text[i], TextType.TEXT))
                     else:
                         new_nodes.append(TextNode(text[i], text_type))
