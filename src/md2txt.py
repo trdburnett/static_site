@@ -10,10 +10,16 @@ def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: 
                 if char == delimiter:
                     delimiter_count += 1
             print(delimiter_count)
-        if delimiter_count % 2 != 0:
+        if delimiter_count % 2 != 0 or delimiter_count == 0:
             raise Exception("Invalid Markdown Syntax")
         else:
             text = node.text.split(delimiter,maxsplit=(delimiter_count))
-            print(text)
+            for i in range(0,len(text)-1):
+                if i % 2 != 0:
+                    new_nodes.append(TextNode(text[i], TextType.TEXT))
+                else:
+                    new_nodes.append(TextNode(text[i], text_type))
+    print(new_nodes)
+    return new_nodes
 
 split_nodes_delimiter([TextNode("This is text with a `code block` word", TextType.TEXT)], "`", TextType.CODE)
