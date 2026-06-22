@@ -1,3 +1,4 @@
+import re
 from textnode import TextNode, TextType
 def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: TextType) -> list[TextNode]:
     new_nodes = []
@@ -36,3 +37,11 @@ def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: 
                     else:
                         new_nodes.append(TextNode(text[i], text_type))
     return new_nodes
+
+def extract_markdown_images(text: str) -> list[tuple]:
+    alt_text = re.findall(r"!\[\w+\]")
+    url = re.findall(r"\(https:\/\/.*?\)")
+    print(alt_text)
+    print(url)
+
+extract_markdown_images("This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)")
