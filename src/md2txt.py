@@ -8,9 +8,22 @@ def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: 
             new_nodes.append(node)
         else:
             delimiter_count = 0
-            for char in node.text:
-                if char == delimiter:
-                    delimiter_count += 1
+            if len(delimiter) > 2:
+                raise Exception("Invalid Delimiter")
+            if len(delimiter) == 2:
+                check_next_char = False
+                for char in node.text:
+                    if not check_next_char: 
+                        if char == delimiter[0]:
+                            check_next_char = True
+                    if check_next_char:
+                        if char == delimiter[1]:
+                            delimiter_count +=1
+                        check_next_char = False
+            if len(delimiter) == 1:        
+                for char in node.text:
+                    if char == delimiter:
+                        delimiter_count += 1
             if delimiter_count % 2 != 0:
                 raise Exception("Invalid Markdown Syntax")
             elif delimiter_count == 0:
