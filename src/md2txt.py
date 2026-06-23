@@ -39,9 +39,9 @@ def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: 
     return new_nodes
 
 def extract_markdown_images(text: str) -> list[tuple]:
-    alt_text = re.findall(r"!\[([^\[\]]*)\]\(([^\(\)]*)\)",text)
-    url = re.findall(r"\(https:\/\/.*?\)",text)
-    print(alt_text)
-    print(url)
+    return re.findall(r"!\[([^\[\]]*)\]\(([^\(\)]*)\)",text)
+    
 
-extract_markdown_images("This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)")
+result = extract_markdown_images("This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)")
+
+print(result)
