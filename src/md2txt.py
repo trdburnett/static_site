@@ -53,7 +53,11 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
             new_nodes.append(node)
         else:
             print(extract_markdown_images(node.text))
-            print(node.text.split("!"))
+            split_text = node.text.split("!")
+            for item in split_text:
+                if ")" in item:
+                    print(item.split(")"))
+
 
 old_nodes = [TextNode("This is text with an ![image](https://i.imgur.com/zjjcJKZ.png) and another ![second image](https://i.imgur.com/3elNhQu.png)", TextType.TEXT)]
 split_nodes_image(old_nodes)
