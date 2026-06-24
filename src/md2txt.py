@@ -62,7 +62,7 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
                             if info[0] in item and info[1] in item:
                                 print(info[0])
                                 print(info[1])
-                            else:
+                            elif item != "":
                                 new_nodes.append(TextNode(item, TextType.TEXT))
                 else:
                     new_nodes.append(TextNode(item, TextType.TEXT))
