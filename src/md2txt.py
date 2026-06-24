@@ -53,6 +53,8 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
             new_nodes.append(node)
         else:
             extracted = extract_markdown_images(node.text)
+            if extracted == []:
+                raise Exception("No Image Data Extracted!")
             split_text = node.text.split("!")
             for item in split_text:
                 if ")" in item:
@@ -78,6 +80,8 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
             new_nodes.append(node)
         else:
             extracted = extract_markdown_links(node.text)
+            if extracted == []:
+                raise Exception("No Image Data Extracted!")
             split_text = node.text.split("[")
             for item in split_text:
                 if ")" in item:
