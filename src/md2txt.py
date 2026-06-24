@@ -61,8 +61,8 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
                         for info in extracted:
                             if info[0] in item and info[1] in item:
                                 new_nodes.append(TextNode(info[0], TextType.IMAGE, info[1]))
-                            elif item != "" and not "[" in item:
-                                new_nodes.append(TextNode(item, TextType.TEXT))
+                            #elif item != "" and not "[" in item:
+                            #    new_nodes.append(TextNode(item, TextType.TEXT))
                 else:
                     new_nodes.append(TextNode(item, TextType.TEXT))
             print(new_nodes)
