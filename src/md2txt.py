@@ -57,13 +57,13 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
             for item in split_text:
                 if ")" in item:
                     split_item = item.split(")")
-                    for item in split_item:
+                    for aitem in split_item:
                         for info in extracted:
-                            if info[0] in item and info[1] in item:
+                            if info[0] in aitem and info[1] in aitem:
                                 print(info[0])
                                 print(info[1])
                             elif item != "":
-                                new_nodes.append(TextNode(item, TextType.TEXT))
+                                new_nodes.append(TextNode(aitem, TextType.TEXT))
                 else:
                     new_nodes.append(TextNode(item, TextType.TEXT))
             print(new_nodes)
