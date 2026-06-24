@@ -59,7 +59,7 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
                     split_item = item.split(")")
                     for item in split_item:
                         for info in extracted:
-                            if info in item:
+                            if info[0] in item and info[1] in item:
                                 print(info[0])
                                 print(info[1])
                             else:
