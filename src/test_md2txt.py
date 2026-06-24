@@ -118,5 +118,15 @@ class Testmd2txt(unittest.TestCase):
         matches = extract_markdown_links(text)
         self.assertListEqual([("to boot dev", "https://www.boot.dev"), ("to youtube", "https://www.youtube.com/@bootdotdev")], matches)
 
+    def test_extract_links_missing_punctuation_1(self):
+        text = "This is text with a link to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)"
+        matches = extract_markdown_links(text)
+        self.assertListEqual([("to youtube", "https://www.youtube.com/@bootdotdev")], matches)
+
+    def test_extract_links_missing_punctuation_2(self):
+        text = "This is text with a link to boot dev](https://www.boot.dev) and to youtube](https://www.youtube.com/@bootdotdev)"
+        matches = extract_markdown_links(text)
+        self.assertListEqual([], matches)
+
 if __name__ == "__main__":
     unittest.main()
