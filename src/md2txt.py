@@ -52,7 +52,7 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
         if node.text_type != TextType.TEXT:
             new_nodes.append(node)
         else:
-            extracted = (extract_markdown_images(node.text))
+            extracted = extract_markdown_images(node.text)
             split_text = node.text.split("!")
             for item in split_text:
                 if ")" in item:
@@ -67,8 +67,19 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
                             
                 else:
                     new_nodes.append(TextNode(item, TextType.TEXT))
-            print(new_nodes)
+            return new_nodes
 
+def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
+    new_nodes = []
+    if old_nodes == []:
+        raise Exception("Empty Input List")
+    for node in old_nodes:
+        if node.text_type != TextType.TEXT:
+            new_nodes.append(node)
+        else:
+            extracted = extract_markdown_links(node.text)
+            split_text = node.text.split("[")
+            print(split_text)
 
-old_nodes = [TextNode("This is text with an ![image](https://i.imgur.com/zjjcJKZ.png) and another ![second image](https://i.imgur.com/3elNhQu.png)", TextType.TEXT)]
-split_nodes_image(old_nodes)
+old_nodes = [TextNode("This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)", TextType.TEXT)]
+split_nodes_link(old_nodes)
