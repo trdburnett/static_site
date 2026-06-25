@@ -172,7 +172,7 @@ class Testmd2txt(unittest.TestCase):
         old_nodes = [TextNode("This is text with a !rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)", TextType.TEXT)]
         new_nodes = split_nodes_image(old_nodes)
         self.assertEqual(new_nodes, [TextNode("This is text with a ", TextType.TEXT),
-                                     TextNode("rick roll](https://i.imgur.com/aKaOqIh.gif)", TextType.TEXT),
+                                     TextNode("rick roll](https://i.imgur.com/aKaOqIh.gif", TextType.TEXT),
                                      TextNode(" and ", TextType.TEXT),
                                      TextNode("obi wan", TextType.IMAGE, "https://i.imgur.com/fJRm4Vk.jpeg")])
         
