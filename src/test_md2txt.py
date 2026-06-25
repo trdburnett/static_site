@@ -202,7 +202,7 @@ class Testmd2txt(unittest.TestCase):
             new_nodes = split_nodes_link(old_nodes)
 
     def test_split_nodes_link_1_node_already_link_node_1_valid(self):
-        old_nodes = [TextNode("to boot dev", TextType.LINK, "(https://www.boot.dev)"),
+        old_nodes = [TextNode("to boot dev", TextType.LINK, "https://www.boot.dev"),
                     TextNode(" and [to youtube](https://www.youtube.com/@bootdotdev)", TextType.TEXT)]
         new_nodes = split_nodes_link(old_nodes)
         self.assertEqual(new_nodes, [TextNode("to boot dev", TextType.LINK, "https://www.boot.dev"),
