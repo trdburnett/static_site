@@ -159,7 +159,7 @@ class Testmd2txt(unittest.TestCase):
                                      TextNode("[obi wan](https://i.imgur.com/fJRm4Vk.jpeg and another ", TextType.TEXT),
                                      TextNode("third image", TextType.IMAGE, "https://i.imgur.com/3elNhQu.png")])
 
-    def test_split_nodes_image_2_node_list_1_already_image_node_1_missing_explanation_mark_1_valid(self):
+    def test_split_nodes_image_2_node_list_1_already_image_node_1_valid(self):
         old_nodes = [TextNode("rick roll", TextType.IMAGE, "https://i.imgur.com/aKaOqIh.gif"),
                      TextNode("This is text with an ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)", TextType.TEXT)]
         new_nodes = split_nodes_image(old_nodes)
@@ -174,6 +174,41 @@ class Testmd2txt(unittest.TestCase):
                                      TextNode("rick roll](https://i.imgur.com/aKaOqIh.gif", TextType.TEXT),
                                      TextNode(" and ", TextType.TEXT),
                                      TextNode("obi wan", TextType.IMAGE, "https://i.imgur.com/fJRm4Vk.jpeg")])
+        
+    def test_split_nodes_link(self):
+        old_nodes = [TextNode("This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev))", TextType.TEXT)]
+        new_nodes = split_nodes_link(old_nodes)
+        self.assertEqual(new_nodes, [TextNode("This is text with a link ", TextType.TEXT),
+                                     TextNode("to boot dev", TextType.LINK, "https://www.boot.dev"),
+                                     TextNode(" and ", TextType.TEXT),
+                                     TextNode("to youtube", TextType.LINK, "www.youtube.com/@bootdotdev")])
+        
+    def test_split_nodes_link_1_missing_opening_square_bracket(self):
+        old_nodes = [TextNode("This is text with a link to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev))", TextType.TEXT)]
+        new_nodes = split_nodes_link(old_nodes)
+        self.assertEqual(new_nodes, [TextNode(" and ", TextType.TEXT),
+                                     TextNode("to youtube", TextType.LINK, "www.youtube.com/@bootdotdev")])
+        
+    def test_split_nodes_link_1_missing_opening_and_closing_square_bracket(self):
+        old_nodes = [TextNode("This is text with a link to boot dev(https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev))", TextType.TEXT)]
+        new_nodes = split_nodes_link(old_nodes)
+        self.assertEqual(new_nodes, [TextNode("This is text with a link to boot dev(https://www.boot.dev", TextType.TEXT),
+                                     TextNode(" and ", TextType.TEXT),
+                                     TextNode("to youtube", TextType.LINK, "www.youtube.com/@bootdotdev")])
+        
+    def test_split_nodes_link_2_missing_opening_square_bracket(self):
+        old_nodes = [TextNode("This is text with a link to boot dev](https://www.boot.dev) and to youtube](https://www.youtube.com/@bootdotdev))", TextType.TEXT)]
+        with self.assertRaises(Exception):
+            new_nodes = split_nodes_link(old_nodes)
+
+    def test_split_nodes_link_1_node_already_link_node_1_valid(self):
+        old_nodes = [TextNode("[to boot dev]", TextType.LINK, "(https://www.boot.dev)"),
+                    TextNode(" and [to youtube](https://www.youtube.com/@bootdotdev)", TextType.TEXT)]
+        new_nodes = split_nodes_link(old_nodes)
+        self.assertEqual(new_nodes, [TextNode("to boot dev", TextType.LINK, "https://www.boot.dev"),
+                                     TextNode(" and ", TextType.TEXT),
+                                     TextNode("to youtube", TextType.LINK, "www.youtube.com/@bootdotdev")])
+        
         
     
 
