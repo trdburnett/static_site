@@ -136,10 +136,41 @@ class Testmd2txt(unittest.TestCase):
                                      TextNode(" and ", TextType.TEXT),
                                      TextNode("obi wan", TextType.IMAGE, "https://i.imgur.com/fJRm4Vk.jpeg")])
     
-    def test_split_nodes_image_missing_puntuation_1(self):
+    def test_split_nodes_image_missing_puntuation_1_missing_explanation_mark(self):
         old_nodes = [TextNode("This is text with a [rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)", TextType.TEXT)]
         new_nodes = split_nodes_image(old_nodes)
         self.assertEqual(new_nodes, [TextNode(" and ", TextType.TEXT),
+                                     TextNode("obi wan", TextType.IMAGE, "https://i.imgur.com/fJRm4Vk.jpeg")])
+        
+    def test_split_nodes_image_missing_puntuation_2_both_missing_explanation_mark(self):
+        old_nodes = [TextNode("This is text with a [rick roll](https://i.imgur.com/aKaOqIh.gif) and [obi wan](https://i.imgur.com/fJRm4Vk.jpeg)", TextType.TEXT)]
+        with self.assertRaises(Exception):
+            new_nodes = split_nodes_image(old_nodes)
+
+    def test_split_nodes_image_missing_puntuation_3_1_missing_explanation_mark_1_missing_closing_bracket(self):
+        old_nodes = [TextNode("This is text with a [rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg", TextType.TEXT)]
+        new_nodes = split_nodes_image(old_nodes)
+        with self.assertRaises(Exception):
+            new_nodes = split_nodes_image(old_nodes)
+
+    def test_split_nodes_image_missing_puntuation_4_first_missing_explanation_mark_second_missing_closing_bracket_1_correct(self):
+        old_nodes = [TextNode("This is text with a [rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg and another ![third image](https://i.imgur.com/3elNhQu.png)", TextType.TEXT)]
+        new_nodes = split_nodes_image(old_nodes)
+        self.assertEqual(new_nodes, [TextNode("third image", TextType.IMAGE, "https://i.imgur.com/3elNhQu.png")])
+
+    def test_split_nodes_image_3_node_list_1_already_image_node_1_missing_explanation_mark_1_valid(self):
+        old_nodes = [TextNode("rick roll", TextType.IMAGE, "https://i.imgur.com/aKaOqIh.gif"),
+                     TextNode("This is text with an [obi wan](https://i.imgur.com/fJRm4Vk.jpeg)", TextType.TEXT),
+                     TextNode("here is a ![third image](https://i.imgur.com/3elNhQu.png)", TextType.TEXT)]
+        new_nodes = split_nodes_image(old_nodes)
+        self.assertEqual(new_nodes, [TextNode("rick roll", TextType.IMAGE, "https://i.imgur.com/aKaOqIh.gif"),
+                                     TextNode("third image", TextType.IMAGE, "https://i.imgur.com/3elNhQu.png")])
+        
+    def test_split_nodes_image_1_missing_opening_square_bracket(self):
+        old_nodes = [TextNode("This is text with a !rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)", TextType.TEXT)]
+        new_nodes = split_nodes_image(old_nodes)
+        self.assertEqual(new_nodes, [TextNode("This is text with a ", TextType.TEXT),
+                                     TextNode("rick roll](https://i.imgur.com/aKaOqIh.gif) and ", TextType.TEXT),
                                      TextNode("obi wan", TextType.IMAGE, "https://i.imgur.com/fJRm4Vk.jpeg")])
         
     
