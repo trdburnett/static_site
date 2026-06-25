@@ -165,7 +165,7 @@ class Testmd2txt(unittest.TestCase):
                      TextNode("This is text with an ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)", TextType.TEXT)]
         new_nodes = split_nodes_image(old_nodes)
         self.assertEqual(new_nodes, [TextNode("rick roll", TextType.IMAGE, "https://i.imgur.com/aKaOqIh.gif"),
-                                     TextNode("This is text with an ", TextType.TEXT)
+                                     TextNode("This is text with an ", TextType.TEXT),
                                      TextNode("obi wan", TextType.IMAGE, "https://i.imgur.com/fJRm4Vk.jpeg")])
         
     def test_split_nodes_image_1_missing_opening_square_bracket(self):
