@@ -209,6 +209,11 @@ class Testmd2txt(unittest.TestCase):
                                      TextNode(" and ", TextType.TEXT),
                                      TextNode("to youtube", TextType.LINK, "https://www.youtube.com/@bootdotdev")])
         
+    def test_split_nodes_link_empty_list(self):
+        old_nodes = []
+        with self.assertRaises(Exception):
+            new_nodes = split_nodes_link(old_nodes)
+        
         
     
 
