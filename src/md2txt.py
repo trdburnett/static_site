@@ -101,7 +101,7 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
     return new_nodes            
 
 def text_to_textnodes(text: str) -> list[TextNode]:
-    check_for_bold = split_nodes_delimiter([TextNode("text", TextType.TEXT)], "**", TextType.BOLD)
+    check_for_bold = split_nodes_delimiter([TextNode(text, TextType.TEXT)], "**", TextType.BOLD)
     print(check_for_bold)
 
 text_to_textnodes("This is **text** with an _italic_ word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)")
