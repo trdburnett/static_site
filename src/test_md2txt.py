@@ -149,7 +149,6 @@ class Testmd2txt(unittest.TestCase):
 
     def test_split_nodes_image_missing_puntuation_3_1_missing_explanation_mark_1_missing_closing_bracket(self):
         old_nodes = [TextNode("This is text with a [rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg", TextType.TEXT)]
-        new_nodes = split_nodes_image(old_nodes)
         with self.assertRaises(Exception):
             new_nodes = split_nodes_image(old_nodes)
 
