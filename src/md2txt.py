@@ -80,7 +80,7 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
                 if node.text != "":
                     new_nodes.append(node)
             else:
-                split_node = node.text.split(f"![{extracted[0][0]}]({extracted[0][1]})", maxsplit=1)
+                split_node = node.text.split(f"[{extracted[0][0]}]({extracted[0][1]})", maxsplit=1)
                 print(split_node)
                 if split_node[0] != "":
                     new_nodes.append(TextNode(split_node[0], TextType.TEXT))
