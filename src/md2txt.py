@@ -56,12 +56,15 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
             if extracted == []:
                 if node.text != "":
                     new_nodes.append(node)
-            elif len(extracted) == 1:
+            else:
                 split_node = node.text.split(f"![{extracted[0][0]}]({extracted[0][1]})", maxsplit=1)
                 new_nodes.append(TextNode(split_node[0], TextType.TEXT))
                 new_nodes.append(TextNode(extracted[0][0], TextType.IMAGE, extracted[0][1]))
                 new_nodes.append(TextNode(split_node[1], TextType.TEXT))
-            print(new_nodes)
+            if len(extracted) == 1:
+                return new_nodes
+            else:
+                split_nodes_image(new_nodes)
             #else:
             #    split_text = node.text.split("!")
             #    for item in split_text:
