@@ -76,7 +76,7 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
             new_nodes.append(node)
         else:
             extracted = extract_markdown_links(node.text)
-            print(extracted)
+            print(f"This is extracted {extracted}")
             if extracted == []:
                 if node.text != "":
                     new_nodes.append(node)
