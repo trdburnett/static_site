@@ -125,8 +125,10 @@ def text_to_textnodes(text: str) -> list[TextNode]:
         result = split_nodes_delimiter(result, "_", TextType.ITALIC)
     if code_in_text:
         result = split_nodes_delimiter(result, "`", TextType.CODE)
-    print(image_in_text)
-    print(link_in_text)
+    if image_in_text:
+        result = split_nodes_image(result)
+    if link_in_text:
+        result = split_nodes_link(result)
     print(result)
 
 
