@@ -142,10 +142,10 @@ class Testmd2txt(unittest.TestCase):
     #    self.assertEqual(new_nodes, [TextNode(" and ", TextType.TEXT),
     #                                 TextNode("obi wan", TextType.IMAGE, "https://i.imgur.com/fJRm4Vk.jpeg")])
         
-    #def test_split_nodes_image_missing_puntuation_2_both_missing_explanation_mark(self):
-    #    old_nodes = [TextNode("This is text with a [rick roll](https://i.imgur.com/aKaOqIh.gif) and [obi wan](https://i.imgur.com/fJRm4Vk.jpeg)", TextType.TEXT)]
-    #    new_nodes = split_nodes_image(old_nodes)
-    #    self.assertEqual(new_nodes, old_nodes)
+    def test_split_nodes_image_missing_puntuation_2_both_missing_explanation_mark(self):
+        old_nodes = [TextNode("This is text with a [rick roll](https://i.imgur.com/aKaOqIh.gif) and [obi wan](https://i.imgur.com/fJRm4Vk.jpeg)", TextType.TEXT)]
+        new_nodes = split_nodes_image(old_nodes)
+        self.assertEqual(new_nodes, old_nodes)
 
     #def test_split_nodes_image_missing_puntuation_3_1_missing_explanation_mark_1_missing_closing_bracket(self):
     #    old_nodes = [TextNode("This is text with a [rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg", TextType.TEXT)]
