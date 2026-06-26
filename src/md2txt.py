@@ -63,7 +63,7 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
                 new_nodes.append(TextNode(split_node[1], TextType.TEXT))
             if len(extracted) == 1:
                 return new_nodes
-            else:
+            elif len(extracted) > 1:
                 return split_nodes_image(new_nodes)
             #else:
             #    split_text = node.text.split("!")
