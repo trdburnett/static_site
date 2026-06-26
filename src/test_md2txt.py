@@ -28,15 +28,15 @@ class Testmd2txt(unittest.TestCase):
         old_nodes = [TextNode("This is text with a code block word", TextType.TEXT)]
         delimiter = "`"
         text_type = TextType.CODE
-        with self.assertRaises(Exception):
-            new_nodes = split_nodes_delimiter(old_nodes,delimiter,text_type)
+        new_nodes = split_nodes_delimiter(old_nodes,delimiter,text_type)
+        self.assertEqual(new_nodes, old_nodes)
 
     def test_invalid_delimiter(self):
         old_nodes = [TextNode("This is text with an ```invalid demiliter```", TextType.TEXT)]
         delimiter = "```"
         text_type = TextType.CODE
-        new_nodes = split_nodes_delimiter(old_nodes,delimiter,text_type)
-        self.assertEqual(new_nodes, old_nodes)
+        with self.assertRaises(Exception):
+            new_nodes = split_nodes_delimiter(old_nodes,delimiter,text_type)
 
     def test_code_valid_1_item(self):
         old_nodes = [TextNode("This is text with a `code block` word", TextType.TEXT)]
