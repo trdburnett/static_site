@@ -166,13 +166,11 @@ class Testmd2txt(unittest.TestCase):
                                      TextNode("This is text with an ", TextType.TEXT),
                                      TextNode("obi wan", TextType.IMAGE, "https://i.imgur.com/fJRm4Vk.jpeg")])
         
-    #def test_split_nodes_image_1_missing_opening_square_bracket(self):
-    #    old_nodes = [TextNode("This is text with a !rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)", TextType.TEXT)]
-    #    new_nodes = split_nodes_image(old_nodes)
-    #    self.assertEqual(new_nodes, [TextNode("This is text with a ", TextType.TEXT),
-    #                                 TextNode("rick roll](https://i.imgur.com/aKaOqIh.gif", TextType.TEXT),
-    #                                 TextNode(" and ", TextType.TEXT),
-    #                                 TextNode("obi wan", TextType.IMAGE, "https://i.imgur.com/fJRm4Vk.jpeg")])
+    def test_split_nodes_image_1_missing_opening_square_bracket(self):
+        old_nodes = [TextNode("This is text with a !rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)", TextType.TEXT)]
+        new_nodes = split_nodes_image(old_nodes)
+        self.assertEqual(new_nodes, [TextNode("This is text with a !rick roll](https://i.imgur.com/aKaOqIh.gif) and ", TextType.TEXT),
+                                     TextNode("obi wan", TextType.IMAGE, "https://i.imgur.com/fJRm4Vk.jpeg")])
         
     def test_split_nodes_link(self):
         old_nodes = [TextNode("This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev))", TextType.TEXT)]
