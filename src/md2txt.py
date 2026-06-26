@@ -83,7 +83,7 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
                 split_node = node.text.split(f"[{extracted[0][0]}]({extracted[0][1]})", maxsplit=1)
                 if split_node[0] != "":
                     new_nodes.append(TextNode(split_node[0], TextType.TEXT))
-                new_nodes.append(TextNode(extracted[0][0], TextType.IMAGE, extracted[0][1]))
+                new_nodes.append(TextNode(extracted[0][0], TextType.LINK, extracted[0][1]))
                 if split_node[1] != "":
                     new_nodes.append(TextNode(split_node[1], TextType.TEXT))
             if len(extracted) > 1:
