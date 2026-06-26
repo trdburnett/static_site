@@ -63,24 +63,8 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
                 new_nodes.append(TextNode(extracted[0][0], TextType.IMAGE, extracted[0][1]))
                 if split_node[1] != "":
                     new_nodes.append(TextNode(split_node[1], TextType.TEXT))
-            #if len(extracted) == 1:
-            #    return new_nodes
             if len(extracted) > 1:
                 return split_nodes_image(new_nodes)
-            #else:
-            #    split_text = node.text.split("!")
-            #    for item in split_text:
-            #        if ")" in item:
-            #            split_item = item.split(")")
-            #            for item in split_item:
-            #                if item != "" and not "[" in item:
-            #                        new_nodes.append(TextNode(item, TextType.TEXT))
-            #                else:
-            #                    for info in extracted:
-            #                        if info[0] in item and info[1] in item:
-            #                            new_nodes.append(TextNode(info[0], TextType.IMAGE, info[1]))                            
-            #        else:
-            #            new_nodes.append(TextNode(item, TextType.TEXT))
     return new_nodes
 
 def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
