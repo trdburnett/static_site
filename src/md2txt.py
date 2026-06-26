@@ -101,7 +101,30 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
     return new_nodes            
 
 def text_to_textnodes(text: str) -> list[TextNode]:
-    check_for_bold = split_nodes_delimiter([TextNode(text, TextType.TEXT)], "**", TextType.BOLD)
-    print(check_for_bold)
+    bold_in_text = False
+    italic_in_text = False
+    code_in_text = False
+    image_in_text = False
+    link_in_text = False
+    if "**" in text:
+        bold_in_text = True
+    if "_" in text:
+        italic_in_text = True
+    if "`" in text:
+        code_in_text = True
+    image_found = extract_markdown_images(text)
+    if image_found != []:
+        image_in_text = True
+    link_found = extract_markdown_links(text)
+    if link_found != []:
+        link_in_text = True
+    result = ([TextNode(text, TextType.TEXT)])
+    print(bold_in_text)
+    print(italic_in_text)
+    print(code_in_text)
+    print(image_in_text)
+    print(link_in_text)
+    print(result)
+
 
 text_to_textnodes("This is **text** with an _italic_ word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)")
