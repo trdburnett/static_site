@@ -131,8 +131,8 @@ def text_to_textnodes(text: str) -> list[TextNode]:
     if image_in_text:
         result = split_nodes_image(result)
     #print(result)
-    if link_in_text:
-        result = split_nodes_link(result)
+    #if link_in_text:
+    #    result = split_nodes_link(result)
     #print(result)
 
 
