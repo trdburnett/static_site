@@ -119,7 +119,8 @@ def text_to_textnodes(text: str) -> list[TextNode]:
     if link_found != []:
         link_in_text = True
     result = ([TextNode(text, TextType.TEXT)])
-    print(bold_in_text)
+    if bold_in_text:
+        split_nodes_delimiter(result, "**", TextType.BOLD)
     print(italic_in_text)
     print(code_in_text)
     print(image_in_text)
