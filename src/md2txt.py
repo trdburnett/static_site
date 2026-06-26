@@ -58,6 +58,9 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
                     new_nodes.append(node)
             else:
                 print(extracted)
+                for item in extracted:
+                    split_node = node.text.split(f"![{item[0]}]({item[1]})")
+                    print(split_node)
             #else:
             #    split_text = node.text.split("!")
             #    for item in split_text:
