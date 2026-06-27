@@ -236,7 +236,7 @@ class Testmd2txt(unittest.TestCase):
                                      TextNode(" and a ", TextType.TEXT),
                                      TextNode("link", TextType.LINK, "https://boot.dev")])
         
-    def test_text_to_textnodes_all_nodes(self):
+    def test_text_to_textnodes_missing_image(self):
         text = "This is **text** with an _italic_ word and a `code block` and a [link](https://boot.dev)"
         new_nodes = text_to_textnodes(text)
         self.assertEqual(new_nodes, [TextNode("This is ", TextType.TEXT),
