@@ -91,6 +91,8 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
     return new_nodes            
 
 def text_to_textnodes(text: str) -> list[TextNode]:
+    if text == "":
+        raise Exception("Empty String")
     bold_in_text = False
     italic_in_text = False
     code_in_text = False
