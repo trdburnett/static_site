@@ -173,7 +173,7 @@ class Testmd2txt(unittest.TestCase):
                                      TextNode("obi wan", TextType.IMAGE, "https://i.imgur.com/fJRm4Vk.jpeg")])
         
     def test_split_nodes_link(self):
-        old_nodes = [TextNode("This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev))", TextType.TEXT)]
+        old_nodes = [TextNode("This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)", TextType.TEXT)]
         new_nodes = split_nodes_link(old_nodes)
         self.assertEqual(new_nodes, [TextNode("This is text with a link ", TextType.TEXT),
                                      TextNode("to boot dev", TextType.LINK, "https://www.boot.dev"),
