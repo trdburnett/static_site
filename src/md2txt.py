@@ -126,7 +126,8 @@ def text_to_textnodes(text: str) -> list[TextNode]:
 def markdown_to_blocks(markdown: str) -> list[str]:
     blocks = markdown.split("\n\n")
     for string in blocks:
-        string.strip()
+        stripped = string.strip()
+        print(stripped[0:2])
     print(blocks)
 
 markdown_to_blocks("""# This is a heading
