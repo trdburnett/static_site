@@ -227,8 +227,7 @@ class Testmd2txt(unittest.TestCase):
     def test_text_to_textnode_missing_bold(self):
         text = "This is  with an _italic_ word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)"
         new_nodes = text_to_textnodes(text)
-        self.assertEqual(new_nodes, [TextNode("This is ", TextType.TEXT),
-                                     TextNode(" with an ", TextType.TEXT),
+        self.assertEqual(new_nodes, [TextNode("This is  with an ", TextType.TEXT),
                                      TextNode("italic", TextType.ITALIC),
                                      TextNode(" word and a ", TextType.TEXT),
                                      TextNode("code block", TextType.CODE),
