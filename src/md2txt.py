@@ -119,7 +119,4 @@ def text_to_textnodes(text: str) -> list[TextNode]:
         result = split_nodes_image(result)
     if link_in_text:
         result = split_nodes_link(result)
-    print(result)
-
-
-text_to_textnodes("This is **text** with an _italic_ word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)")
+    return result
