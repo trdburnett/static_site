@@ -128,6 +128,7 @@ def markdown_to_blocks(markdown: str) -> list[str]:
     starting_blocks = markdown.split("\n\n")
     for string in starting_blocks:
         stripped_whitespace = string.strip()
+        print(stripped_whitespace)
         stripped_newlines = stripped_whitespace.strip("\n")
         blocks.append(stripped_newlines)
     print(blocks)
