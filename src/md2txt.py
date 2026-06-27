@@ -115,13 +115,11 @@ def text_to_textnodes(text: str) -> list[TextNode]:
         result = split_nodes_delimiter(result, "_", TextType.ITALIC)
     if code_in_text:
         result = split_nodes_delimiter(result, "`", TextType.CODE)
-    print(result)
     if image_in_text:
         result = split_nodes_image(result)
-    #print(result)
-    #if link_in_text:
-    #    result = split_nodes_link(result)
-    #print(result)
+    if link_in_text:
+        result = split_nodes_link(result)
+    print(result)
 
 
-#text_to_textnodes("This is **text** with an _italic_ word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)")
+text_to_textnodes("This is **text** with an _italic_ word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)")
