@@ -189,7 +189,7 @@ class Testmd2txt(unittest.TestCase):
     def test_split_nodes_link_1_missing_opening_and_closing_square_bracket(self):
         old_nodes = [TextNode("This is text with a link to boot dev(https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)", TextType.TEXT)]
         new_nodes = split_nodes_link(old_nodes)
-        self.assertEqual(new_nodes, [TextNode("This is text with a link to boot dev(https://www.boot.dev and ", TextType.TEXT),
+        self.assertEqual(new_nodes, [TextNode("This is text with a link to boot dev(https://www.boot.dev) and ", TextType.TEXT),
                                      TextNode("to youtube", TextType.LINK, "https://www.youtube.com/@bootdotdev")])
         
     def test_split_nodes_link_2_missing_opening_square_bracket(self):
