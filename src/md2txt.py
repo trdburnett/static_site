@@ -155,20 +155,18 @@ def block_to_block_type(markdown: str) -> BlockType:
         for string in markdown_as_list:
             if string.startswith(">"):
                 quote_block_checks.append(True)
-                unordered_list_block_checks.append(False)
-                ordered_list_block_checks.append(False)
+            if not string.startswith(">"):
+                quote_block_checks.append(False)
             if string.startswith("- "):
-                quote_block_checks.append(False)
                 unordered_list_block_checks.append(True)
-                ordered_list_block_checks.append(False)
-            if string.startswith(r"[0-9]\. "):
-                quote_block_checks.append(False)
+            if not string.startswith("- "):
                 unordered_list_block_checks.append(False)
+            if string.startswith(r"[0-9]\. "):
                 ordered_list_block_checks.append(string[0])
             if string.startswith(r"[0-9]{2}\. "):
-                quote_block_checks.append(False)
-                unordered_list_block_checks.append(False)
                 ordered_list_block_checks.append(string[0:2])
+            if not string.startswith(r"[0-9]\. ") and not string.startswith(r"[0-9]{2}\. "):
+                ordered_list_block_checks.append(False)
     if quote_block_checks != []:
         if False not in quote_block_checks:
             quote_block = True
