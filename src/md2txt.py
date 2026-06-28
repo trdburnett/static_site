@@ -141,7 +141,7 @@ class BlockType(Enum):
     UNORDERED_LIST = "unordered_list"
     ORDERED_LIST = "ordered_list"
 
-def block_to_block_type(markdown: str) -> BlockType:
+def block_to_block_type(markdown: list[str]) -> BlockType:
     markdown_as_list = markdown.split("\n")
     quote_block = False
     unordered_list_block = False

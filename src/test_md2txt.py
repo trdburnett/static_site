@@ -1,6 +1,6 @@
 import unittest
 from textnode import TextNode, TextType
-from md2txt import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_image, split_nodes_link, text_to_textnodes, markdown_to_blocks
+from md2txt import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_image, split_nodes_link, text_to_textnodes, markdown_to_blocks, BlockType, block_to_block_type
 
 class Testmd2txt(unittest.TestCase):
     def test_empty_list(self):
@@ -274,6 +274,11 @@ This is a paragraph of text. It has some **bold** and _italic_ words inside of i
         self.assertEqual(blocks, ["# This is a heading",
                                   "This is a paragraph of text. It has some **bold** and _italic_ words inside of it.",
                                   "- This is the first list item in a list block\n- This is a list item\n- This is another list item"])
+
+    def test_block_to_block_type(self):
+        md = ["# This is a heading"]
+        blocktype = block_to_block_type(md)
+        self.assertEqual(blocktype, BlockType.HEADING)
 
 
 if __name__ == "__main__":
