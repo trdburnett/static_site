@@ -172,12 +172,10 @@ def block_to_block_type(markdown: str) -> BlockType:
         if False not in unordered_list_block_checks:
             unordered_list_block = True
     if ordered_list_block_checks != []:
-        print(ordered_list_block_checks)
         order_check = 1
         for num in ordered_list_block_checks:
             if int(num) == order_check:
                 order_check += 1
-        print(order_check)
         if (order_check - 1) == len(ordered_list_block_checks):
             ordered_list_block = True
     if markdown.startswith("# "):
