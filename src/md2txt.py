@@ -161,9 +161,9 @@ def block_to_block_type(markdown: str) -> BlockType:
                 unordered_list_block_checks.append(True)
             if not string.startswith("- "):
                 unordered_list_block_checks.append(False)
-            if string.startswith(r"[0-9]\. "):
+            if re.match(r"^[0-9]\. ", string):
                 ordered_list_block_checks.append(string[0])
-            if string.startswith(r"[0-9]{2}\. "):
+            if re.match(r"[0-9]{2}\. ", string):
                 ordered_list_block_checks.append(string[0:2])
     if quote_block_checks != []:
         if False not in quote_block_checks:
