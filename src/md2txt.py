@@ -165,9 +165,6 @@ def block_to_block_type(markdown: str) -> BlockType:
                 ordered_list_block_checks.append(string[0])
             if string.startswith(r"[0-9]{2}\. "):
                 ordered_list_block_checks.append(string[0:2])
-            if not string.startswith(r"[0-9]\. ") and not string.startswith(r"[0-9]{2}\. "):
-                print("here")
-                ordered_list_block_checks.append(False)
     if quote_block_checks != []:
         if False not in quote_block_checks:
             quote_block = True
@@ -175,13 +172,12 @@ def block_to_block_type(markdown: str) -> BlockType:
         if False not in unordered_list_block_checks:
             unordered_list_block = True
     if ordered_list_block_checks != []:
-        if False not in ordered_list_block_checks:
-            order_check = 1
-            for num in ordered_list_block_checks:
-                if num == order_check:
-                    order_check += 1
-            if order_check == len(ordered_list_block_checks):
-                ordered_list_block = True
+        order_check = 1
+        for num in ordered_list_block_checks:
+            if num == order_check:
+                order_check += 1
+        if order_check == len(ordered_list_block_checks):
+            ordered_list_block = True
     if markdown.startswith("# "):
         return BlockType.HEADING
     elif markdown.startswith("## "):
