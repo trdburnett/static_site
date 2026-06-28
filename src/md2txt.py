@@ -142,45 +142,42 @@ class BlockType(Enum):
     ORDERED_LIST = "ordered_list"
 
 def block_to_block_type(markdown: list[str]) -> BlockType:
-    markdown_as_list = markdown.split("\n")
     quote_block = False
     unordered_list_block = False
     ordered_list_block = False
     quote_block_checks = []
     unordered_list_block_checks = []
     ordered_list_block_checks = []
-    if markdown_as_list != []:
-        for string in markdown_as_list:
-            if string.startswith(">"):
-                quote_block_checks.append(True)
-                unordered_list_block_checks.append(False)
-                ordered_list_block_checks.append(False)
-            if string.startswith("- "):
-                quote_block_checks.append(False)
-                unordered_list_block_checks.append(True)
-                ordered_list_block_checks.append(False)
-            if string.startswith(r"[0-9]\. "):
-                quote_block_checks.append(False)
-                unordered_list_block_checks.append(False)
-                ordered_list_block_checks.append(string[0])
-            if string.startswith(r"[0-9]{2}\. "):
-                quote_block_checks.append(False)
-                unordered_list_block_checks.append(False)
-                ordered_list_block_checks.append(string[0:2])
-    if quote_block_checks != []:
-        if False not in quote_block_checks:
+    if markdown == []:
+        raise Exception("Input List Empty")
+    for string in markdown:
+        if string.startswith(">"):
+            quote_block_checks.append(True)
+            unordered_list_block_checks.append(False)
+            ordered_list_block_checks.append(False)
+        if string.startswith("- "):
+            quote_block_checks.append(False)
+            unordered_list_block_checks.append(True)
+            ordered_list_block_checks.append(False)
+        if string.startswith(r"[0-9]\. "):
+            quote_block_checks.append(False)
+            unordered_list_block_checks.append(False)
+            ordered_list_block_checks.append(string[0])
+        if string.startswith(r"[0-9]{2}\. "):
+            quote_block_checks.append(False)
+            unordered_list_block_checks.append(False)
+            ordered_list_block_checks.append(string[0:2])
+    if False not in quote_block_checks:
             quote_block = True
-    if unordered_list_block_checks != []:
-        if False not in unordered_list_block_checks:
+    if False not in unordered_list_block_checks:
             unordered_list_block = True
-    if ordered_list_block_checks != []:
-        if False not in ordered_list_block_checks:
-            order_check = 1
-            for num in ordered_list_block_checks:
-                if num == order_check:
-                    order_check += 1
-            if order_check == len(ordered_list_block_checks):
-                ordered_list_block = True
+    if False not in ordered_list_block_checks:
+        order_check = 1
+        for num in ordered_list_block_checks:
+            if num == order_check:
+                order_check += 1
+        if order_check == len(ordered_list_block_checks):
+            ordered_list_block = True
     if markdown.startswith("# "):
         return BlockType.HEADING
     elif markdown.startswith("## "):
