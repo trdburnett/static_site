@@ -330,5 +330,10 @@ This is a paragraph of text. It has some **bold** and _italic_ words inside of i
         blocktype = block_to_block_type(md)
         self.assertEqual(blocktype, BlockType.UNORDERED_LIST)
 
+    def test_block_to_block_type_unordered_list_but_its_a_paragraph(self):
+        md = "- This is an unordered list\n-This is the second list entry\n- This is the third"
+        blocktype = block_to_block_type(md)
+        self.assertEqual(blocktype, BlockType.PARAGRAPH)
+
 if __name__ == "__main__":
     unittest.main()
