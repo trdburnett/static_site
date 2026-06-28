@@ -320,5 +320,10 @@ This is a paragraph of text. It has some **bold** and _italic_ words inside of i
         blocktype = block_to_block_type(md)
         self.assertEqual(blocktype, BlockType.QUOTE)
 
+    def test_block_to_block_type_quote_but_its_a_paragraph(self):
+        md = "> This is a quote block\n Here is the second quote\n> Here is the third"
+        blocktype = block_to_block_type(md)
+        self.assertEqual(blocktype, BlockType.PARAGRAPH)
+
 if __name__ == "__main__":
     unittest.main()
