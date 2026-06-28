@@ -350,5 +350,10 @@ This is a paragraph of text. It has some **bold** and _italic_ words inside of i
         blocktype = block_to_block_type(md)
         self.assertEqual(blocktype, BlockType.PARAGRAPH)
 
+    def test_block_to_block_type_ordered_list_but_its_long(self):
+        md = "1. This is and ordered list\n2. This is the second entry\n3. This is the third\n4. Fourth\n5. Fifth\n6. Sixth\n7. Seventh\n8. Eighth\n9. Ninth\n10. Tenth"
+        blocktype = block_to_block_type(md)
+        self.assertEqual(blocktype, BlockType.ORDERED_LIST)
+
 if __name__ == "__main__":
     unittest.main()
