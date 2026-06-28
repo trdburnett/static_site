@@ -275,6 +275,11 @@ This is a paragraph of text. It has some **bold** and _italic_ words inside of i
                                   "This is a paragraph of text. It has some **bold** and _italic_ words inside of it.",
                                   "- This is the first list item in a list block\n- This is a list item\n- This is another list item"])
 
+    def test_block_to_block_type_empty_string(self):
+        md = ""
+        with self.assertRaises(Exception):
+            blocktype = block_to_block_type(md)
+    
     def test_block_to_block_type_heading_1(self):
         md = "# This is a heading"
         blocktype = block_to_block_type(md)
