@@ -310,5 +310,10 @@ This is a paragraph of text. It has some **bold** and _italic_ words inside of i
         blocktype = block_to_block_type(md)
         self.assertEqual(blocktype, BlockType.HEADING)
 
+    def test_block_to_block_type_code(self):
+        md = "```\n This is a code block \n This is the second line in the code block```"
+        blocktype = block_to_block_type(md)
+        self.assertEqual(blocktype, BlockType.CODE)
+
 if __name__ == "__main__":
     unittest.main()
