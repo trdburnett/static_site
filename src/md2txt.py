@@ -178,7 +178,7 @@ def block_to_block_type(markdown: str) -> BlockType:
             if int(num) == order_check:
                 order_check += 1
         print(order_check)
-        if order_check == len(ordered_list_block_checks):
+        if (order_check - 1) == len(ordered_list_block_checks):
             ordered_list_block = True
     if markdown.startswith("# "):
         return BlockType.HEADING
