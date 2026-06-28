@@ -276,32 +276,32 @@ This is a paragraph of text. It has some **bold** and _italic_ words inside of i
                                   "- This is the first list item in a list block\n- This is a list item\n- This is another list item"])
 
     def test_block_to_block_type_heading_1(self):
-        md = ["# This is a heading"]
+        md = "# This is a heading"
         blocktype = block_to_block_type(md)
         self.assertEqual(blocktype, BlockType.HEADING)
     
     def test_block_to_block_type_heading_2(self):
-        md = ["## This is a heading"]
+        md = "## This is a heading"
         blocktype = block_to_block_type(md)
         self.assertEqual(blocktype, BlockType.HEADING)    
 
     def test_block_to_block_type_heading_3(self):
-        md = ["### This is a heading"]
+        md = "### This is a heading"
         blocktype = block_to_block_type(md)
         self.assertEqual(blocktype, BlockType.HEADING)
 
     def test_block_to_block_type_heading_4(self):
-        md = ["#### This is a heading"]
+        md = "#### This is a heading"
         blocktype = block_to_block_type(md)
         self.assertEqual(blocktype, BlockType.HEADING)
 
     def test_block_to_block_type_heading_5(self):
-        md = ["##### This is a heading"]
+        md = "##### This is a heading"
         blocktype = block_to_block_type(md)
         self.assertEqual(blocktype, BlockType.HEADING)
 
     def test_block_to_block_type_heading_6(self):
-        md = ["###### This is a heading"]
+        md = "###### This is a heading"
         blocktype = block_to_block_type(md)
         self.assertEqual(blocktype, BlockType.HEADING)
 
