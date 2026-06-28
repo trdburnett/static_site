@@ -177,6 +177,7 @@ def block_to_block_type(markdown: str) -> BlockType:
         for num in ordered_list_block_checks:
             if num == order_check:
                 order_check += 1
+        print(order_check)
         if order_check == len(ordered_list_block_checks):
             ordered_list_block = True
     if markdown.startswith("# "):
