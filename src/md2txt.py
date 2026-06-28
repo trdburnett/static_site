@@ -142,6 +142,8 @@ class BlockType(Enum):
     ORDERED_LIST = "ordered_list"
 
 def block_to_block_type(markdown: str) -> BlockType:
+    if markdown == "":
+        raise Exception("Input String Is Empty")
     markdown_as_list = markdown.split("\n")
     quote_block = False
     unordered_list_block = False
