@@ -1,4 +1,5 @@
 import re
+from enum import Enum
 from textnode import TextNode, TextType
 def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: TextType) -> list[TextNode]:
     new_nodes = []
@@ -131,4 +132,75 @@ def markdown_to_blocks(markdown: str) -> list[str]:
         stripped_newlines = stripped_whitespace.strip("\n")
         blocks.append(stripped_newlines)
     return blocks
+
+class BlockType(Enum):
+    PARAGRAPH = "paragraph"
+    HEADING = "heading"
+    CODE = "code"
+    QUOTE = "quote"
+    UNORDERED_LIST = "unordered_list"
+    ORDERED_LIST = "ordered_list"
+
+def block_to_block_type(markdown: str) -> BlockType:
+    markdown_as_list = markdown.split("\n")
+    quote_block = False
+    unordered_list_block = False
+    ordered_list_block = False
+    quote_block_checks = []
+    unordered_list_block_checks = []
+    ordered_list_block_checks = []
+    if markdown_as_list != []:
+        for string in markdown_as_list:
+            if string.startswith(">"):
+                quote_block_checks.append(True)
+                unordered_list_block_checks.append(False)
+                ordered_list_block_checks.append(False)
+            if string.startswith("- "):
+                quote_block_checks.append(False)
+                unordered_list_block_checks.append(True)
+                ordered_list_block_checks.append(False)
+            if string.startswith(r"[0-9]\. "):
+                quote_block_checks.append(False)
+                unordered_list_block_checks.append(False)
+                ordered_list_block_checks.append(string[0])
+            if string.startswith(r"[0-9]{2}\. "):
+                quote_block_checks.append(False)
+                unordered_list_block_checks.append(False)
+                ordered_list_block_checks.append(string[0:2])
+    if quote_block_checks != []:
+        if False not in quote_block_checks:
+            quote_block = True
+    if unordered_list_block_checks != []:
+        if False not in unordered_list_block_checks:
+            unordered_list_block = True
+    if ordered_list_block_checks != []:
+        if False not in ordered_list_block_checks:
+            order_check = 1
+            for num in ordered_list_block_checks:
+                if num == order_check:
+                    order_check += 1
+            if order_check == len(ordered_list_block_checks):
+                ordered_list_block = True
+    if markdown.startswith("# "):
+        return BlockType.HEADING
+    elif markdown.startswith("## "):
+        return BlockType.HEADING
+    elif markdown.startswith("### "):
+        return BlockType.HEADING
+    elif markdown.startswith("#### "):
+        return BlockType.HEADING
+    elif markdown.startswith("##### "):
+        return BlockType.HEADING
+    elif markdown.startswith("###### "):
+        return BlockType.HEADING
+    elif markdown.startswith("```\n") and markdown.endswith("```"):
+        return BlockType.CODE
+    elif quote_block:
+        return BlockType.QUOTE
+    elif unordered_list_block:
+        return BlockType.UNORDERED_LIST
+    elif ordered_list_block:
+        return BlockType.ORDERED_LIST
+    else:
+        return BlockType.PARAGRAPH
 
