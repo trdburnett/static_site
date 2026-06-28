@@ -202,5 +202,6 @@ def block_to_block_type(markdown: str) -> BlockType:
     elif ordered_list_block:
         return BlockType.ORDERED_LIST
     else:
+        print(ordered_list_block_checks)
         return BlockType.PARAGRAPH
 
