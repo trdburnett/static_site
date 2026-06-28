@@ -142,15 +142,26 @@ class BlockType(Enum):
     ORDERED_LIST = "ordered_list"
 
 def block_to_block_type(markdown: list[str]) -> BlockType:
-    quote_block = False
-    unordered_list_block = False
-    ordered_list_block = False
     quote_block_checks = []
     unordered_list_block_checks = []
     ordered_list_block_checks = []
     if markdown == []:
         raise Exception("Input List Empty")
+    if markdown[0].startswith("```\n") and markdown[-1].endswith("```"):
+        return BlockType.CODE
     for string in markdown:
+        if string.startswith("# "):
+            return BlockType.HEADING
+        if string.startswith("## "):
+            return BlockType.HEADING
+        if string.startswith("### "):
+            return BlockType.HEADING
+        if string.startswith("#### "):
+            return BlockType.HEADING
+        if string.startswith("##### "):
+            return BlockType.HEADING
+        if string.startswith("###### "):
+            return BlockType.HEADING
         if string.startswith(">"):
             quote_block_checks.append(True)
             unordered_list_block_checks.append(False)
@@ -168,36 +179,15 @@ def block_to_block_type(markdown: list[str]) -> BlockType:
             unordered_list_block_checks.append(False)
             ordered_list_block_checks.append(string[0:2])
     if False not in quote_block_checks:
-            quote_block = True
+            return BlockType.QUOTE
     if False not in unordered_list_block_checks:
-            unordered_list_block = True
+            return BlockType.UNORDERED_LIST
     if False not in ordered_list_block_checks:
         order_check = 1
         for num in ordered_list_block_checks:
             if num == order_check:
                 order_check += 1
         if order_check == len(ordered_list_block_checks):
-            ordered_list_block = True
-    if markdown.startswith("# "):
-        return BlockType.HEADING
-    elif markdown.startswith("## "):
-        return BlockType.HEADING
-    elif markdown.startswith("### "):
-        return BlockType.HEADING
-    elif markdown.startswith("#### "):
-        return BlockType.HEADING
-    elif markdown.startswith("##### "):
-        return BlockType.HEADING
-    elif markdown.startswith("###### "):
-        return BlockType.HEADING
-    elif markdown.startswith("```\n") and markdown.endswith("```"):
-        return BlockType.CODE
-    elif quote_block:
-        return BlockType.QUOTE
-    elif unordered_list_block:
-        return BlockType.UNORDERED_LIST
-    elif ordered_list_block:
-        return BlockType.ORDERED_LIST
-    else:
-        return BlockType.PARAGRAPH
+            return BlockType.ORDERED_LIST
+    return BlockType.PARAGRAPH
 
