@@ -175,8 +175,8 @@ def block_to_block_type(markdown: str) -> BlockType:
         print(ordered_list_block_checks)
         order_check = 1
         for num in ordered_list_block_checks:
+            print(num)
             if num == order_check:
-                print(num)
                 order_check += 1
         print(order_check)
         if order_check == len(ordered_list_block_checks):
