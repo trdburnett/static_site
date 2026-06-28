@@ -172,6 +172,7 @@ def block_to_block_type(markdown: str) -> BlockType:
         if False not in unordered_list_block_checks:
             unordered_list_block = True
     if ordered_list_block_checks != []:
+        print(ordered_list_block_checks)
         order_check = 1
         for num in ordered_list_block_checks:
             if num == order_check:
@@ -199,6 +200,5 @@ def block_to_block_type(markdown: str) -> BlockType:
     elif ordered_list_block:
         return BlockType.ORDERED_LIST
     else:
-        print(ordered_list_block_checks)
         return BlockType.PARAGRAPH
 
