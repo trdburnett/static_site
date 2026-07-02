@@ -20,7 +20,7 @@ This is another paragraph with _italic_ text and `code` here
             "<div><p>This is <b>bolded</b> paragraph text in a p tag here</p><p>This is another paragraph with <i>italic</i> text and <code>code</code> here</p></div>",
         )
 '''
-        
+'''        
     def test_codeblock(self):
         md = """
 ```
@@ -35,6 +35,6 @@ the **same** even with inline stuff
             html,
             "<div><code>This is text that _should_ remain\nthe **same** even with inline stuff\n</code></div>",
         )
-
+'''
 if __name__ == "__main__":
     unittest.main()
