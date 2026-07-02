@@ -14,7 +14,6 @@ This is another paragraph with _italic_ text and `code` here
 
         node = markdown_to_html(md)
         html = node.to_html()
-        print(html)
         self.assertEqual(
             html,
             "<div><p>This is <b>bolded</b> paragraph\ntext in a p\ntag here</p><p>This is another paragraph with <i>italic</i> text and <code>code</code> here</p></div>",
