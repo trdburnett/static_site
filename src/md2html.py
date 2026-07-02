@@ -1,6 +1,6 @@
 from htmlnode import HTMLNode, ParentNode
 from md2txt import markdown_to_blocks, block_to_block_type, BlockType, text_to_textnodes
-from textnode import text_node_to_html_node
+from textnode import text_node_to_html_node, TextNode, TextType
 def markdown_to_html(markdown: str) -> HTMLNode:
     #splitting markdown in to blocks
     blocks = markdown_to_blocks(markdown)
@@ -15,7 +15,48 @@ def markdown_to_html(markdown: str) -> HTMLNode:
             for node in text_nodes:
                 block_children.append(text_node_to_html_node(node))
             children_to_master_node.append(ParentNode(tag,block_children))
-    #need to handle other block types only heading blocks handled so far
+        if blocktype == BlockType.PARAGRAPH:
+            tag = "p"
+            text_nodes = text_to_textnodes(block)
+            for node in text_nodes:
+                block_children.append(text_node_to_html_node(node))
+            children_to_master_node.append(ParentNode(tag,block_children))
+        if blocktype == BlockType.CODE:
+            code_block = block.lstrip("```\n")
+            code_block = code_block.rstrip("```")
+            node = TextNode("code_block", TextType.CODE)
+            children_to_master_node.append(text_node_to_html_node(node))
+        if blocktype == BlockType.UNORDERED_LIST:
+            list_children = []
+            outer_tag = "ul"
+            inner_tag = "li"
+            list_of_items = block.split("\n")
+            clean_list_of_items = []
+            for item in list_of_items:
+                clean_list_of_items.append(item.lstrip("- "))
+            for item in clean_list_of_items:
+                text_nodes = text_to_textnodes(item)
+                inner_children = []
+                for node in text_nodes:
+                    inner_children.append(text_node_to_html_node(node))
+                list_children.append(ParentNode(inner_tag, inner_children))
+            children_to_master_node.append(ParentNode(outer_tag, list_children))
+        if blocktype == BlockType.ORDERED_LIST:
+            list_children = []
+            outer_tag = "ol"
+            inner_tag = "li"
+            list_of_items = block.split("\n")
+            clean_list_of_items = []
+            for i in range(len(list_of_items)-1):
+                to_strip = str(i+1) + ". "
+                clean_list_of_items.append(list_of_items[i].lstrip(to_strip))
+            for item in clean_list_of_items:
+                text_nodes = text_to_textnodes(item)
+                inner_children = []
+                for node in text_nodes:
+                    inner_children.append(text_node_to_html_node(node))
+                list_children.append(ParentNode(inner_tag, inner_children))
+            children_to_master_node.append(ParentNode(outer_tag, list_children))
     return ParentNode("div", children_to_master_node)
 
 
