@@ -1,4 +1,6 @@
 import unittest
+from htmlnode import HTMLNode, LeafNode, ParentNode
+from md2html import markdown_to_html
 class TestHTMLNode(unittest.TestCase):
     def test_paragraphs(self):
         md = """
@@ -10,7 +12,7 @@ This is another paragraph with _italic_ text and `code` here
 
 """
 
-        node = markdown_to_html_node(md)
+        node = markdown_to_html(md)
         html = node.to_html()
         self.assertEqual(
             html,
@@ -25,7 +27,7 @@ the **same** even with inline stuff
 ```
 """
 
-        node = markdown_to_html_node(md)
+        node = markdown_to_html(md)
         html = node.to_html()
         self.assertEqual(
             html,
