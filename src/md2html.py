@@ -57,6 +57,7 @@ def markdown_to_html(markdown: str) -> HTMLNode:
                     inner_children.append(text_node_to_html_node(node))
                 list_children.append(ParentNode(inner_tag, inner_children))
             children_to_master_node.append(ParentNode(outer_tag, list_children))
+    # need to add handling of blockquotes as i forgot it and sort out the special conditions for the code and paragrah blocks that are hidden in the tips.
     return ParentNode("div", children_to_master_node)
 
 
