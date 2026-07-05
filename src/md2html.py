@@ -17,7 +17,8 @@ def markdown_to_html(markdown: str) -> HTMLNode:
             children_to_master_node.append(ParentNode(tag,block_children))
         if blocktype == BlockType.PARAGRAPH:
             tag = "p"
-            text_nodes = text_to_textnodes(block)
+            new_lines_to_spaces = block.replace("\n"," ")
+            text_nodes = text_to_textnodes(new_lines_to_spaces)
             for node in text_nodes:
                 block_children.append(text_node_to_html_node(node))
             children_to_master_node.append(ParentNode(tag,block_children))
