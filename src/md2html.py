@@ -26,7 +26,7 @@ def markdown_to_html(markdown: str) -> HTMLNode:
             code_block = block.lstrip("```\n")
             code_block = code_block.rstrip("```")
             node = TextNode(code_block, TextType.CODE)
-            children_to_master_node.append(text_node_to_html_node(node))
+            children_to_master_node.append(ParentNode("pre",text_node_to_html_node(node)))
         if blocktype == BlockType.UNORDERED_LIST:
             list_children = []
             outer_tag = "ul"

@@ -31,7 +31,7 @@ the **same** even with inline stuff
         html = node.to_html()
         self.assertEqual(
             html,
-            "<div><code>This is text that _should_ remain\nthe **same** even with inline stuff\n</code></div>",
+            "<div><pre><code>This is text that _should_ remain\nthe **same** even with inline stuff\n</code></pre></div>",
         )
 
 if __name__ == "__main__":
