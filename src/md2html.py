@@ -47,11 +47,7 @@ def markdown_to_html(markdown: str) -> HTMLNode:
                 to_strip = str(i+1) + ". "
                 clean_list_of_items.append(list_of_items[i].lstrip(to_strip))
             for item in clean_list_of_items:
-                text_nodes = text_to_textnodes(item)
-                inner_children = []
-                for node in text_nodes:
-                    inner_children.append(text_node_to_html_node(node))
-                list_children.append(ParentNode(inner_tag, inner_children))
+                list_children.append(ParentNode(inner_tag, text_to_nodes_to_children(item)))
             children_to_master_node.append(ParentNode(outer_tag, list_children))
     return ParentNode("div", children_to_master_node)
 
