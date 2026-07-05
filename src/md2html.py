@@ -58,7 +58,6 @@ def markdown_to_html(markdown: str) -> HTMLNode:
             clean_list_of_items = []
             for i in range(len(list_of_items)):
                 to_strip = str(i+1) + ". "
-                print(to_strip)
                 clean_list_of_items.append(list_of_items[i].lstrip(to_strip))
             for item in clean_list_of_items:
                 text_nodes = text_to_textnodes(item)
