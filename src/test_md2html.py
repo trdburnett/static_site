@@ -37,10 +37,15 @@ the **same** even with inline stuff
     def test_heading(self):
         md = """
 # This is a **h1** heading
+
 ## This is a _h2_ heading
+
 ### This is a h3 heading
+
 #### This is a h4 heading
+
 ##### This is a h5 heading
+
 ###### This is a h6 heading
 """
         node = markdown_to_html(md)
