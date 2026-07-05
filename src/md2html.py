@@ -11,10 +11,7 @@ def markdown_to_html(markdown: str) -> HTMLNode:
         if blocktype == BlockType.HEADING:
             tag = find_heading_tag(block)
             inline_text = block.lstrip(strip_by_h_tag(tag))
-            text_nodes = text_to_textnodes(inline_text)
-            for node in text_nodes:
-                block_children.append(text_node_to_html_node(node))
-            children_to_master_node.append(ParentNode(tag,block_children))
+            children_to_master_node.append(ParentNode(tag,text_to_nodes_to_children(inline_text)))
         if blocktype == BlockType.PARAGRAPH:
             tag = "p"
             new_lines_to_spaces = block.replace("\n"," ")
@@ -98,4 +95,9 @@ def strip_by_h_tag(tag: str) -> str:
     if tag == "h6":
         return("###### ")
     
-
+def text_to_nodes_to_children(text: str) -> list:
+    children = []
+    text_nodes = text_to_textnodes(text)
+    for node in text_nodes:
+        children.append(text_node_to_html_node(node))
+    return children
