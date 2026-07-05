@@ -28,6 +28,13 @@ def markdown_to_html(markdown: str) -> HTMLNode:
             node = TextNode(code_block, TextType.CODE)
             block_children.append(text_node_to_html_node(node))
             children_to_master_node.append(ParentNode("pre",block_children))
+        if blocktype == BlockType.QUOTE:
+            tag = "blockquote"
+            inline_text = block.lstrip("> ")
+            text_nodes = text_to_textnodes(inline_text)
+            for node in text_nodes:
+                block_children.append(text_node_to_html_node(node))
+            children_to_master_node.append(ParentNode(tag,block_children))
         if blocktype == BlockType.UNORDERED_LIST:
             list_children = []
             outer_tag = "ul"
