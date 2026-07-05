@@ -72,11 +72,11 @@ the **same** even with inline stuff
 - **unordered list**
 - with 3 items
 """
-    node = markdown_to_html(md)
-    html = node.to_html()
-    self.assertEqual(
-        html,
-        "<div><ul><li>This is an</li><li><b>unordered list</b></li><li>with 3 items</li></ul></div>"
-    )
+        node = markdown_to_html(md)
+        html = node.to_html()
+        self.assertEqual(
+            html,
+            "<div><ul><li>This is an</li><li><b>unordered list</b></li><li>with 3 items</li></ul></div>"
+        )
 if __name__ == "__main__":
     unittest.main()
