@@ -71,18 +71,18 @@ def markdown_to_html(markdown: str) -> HTMLNode:
 
 
 def find_heading_tag(block: str) -> str:
-    if block.startswith("#"):
-        return "h1"
-    if block.startswith("##"):
-        return "h2"
-    if block.startswith("###"):
-        return "h3"
-    if block.startswith("####"):
-        return "h4"
-    if block.startswith("#####"):
-        return "h5"
     if block.startswith("######"):
         return "h6"
+    if block.startswith("#####"):
+        return "h5"
+    if block.startswith("####"):
+        return "h4"
+    if block.startswith("###"):
+        return "h3"
+    if block.startswith("##"):
+        return "h2"
+    if block.startswith("#"):
+        return "h1"
 
 #returns what to lstrip from the start of a heading block by tag    
 def strip_by_h_tag(tag: str) -> str:
