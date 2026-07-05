@@ -6,7 +6,6 @@ def markdown_to_html(markdown: str) -> HTMLNode:
     blocks = markdown_to_blocks(markdown)
     children_to_master_node = []
     for block in blocks:
-        block_children = []
         blocktype = block_to_block_type(block)
         if blocktype == BlockType.HEADING:
             tag = find_heading_tag(block)
@@ -17,6 +16,7 @@ def markdown_to_html(markdown: str) -> HTMLNode:
             new_lines_to_spaces = block.replace("\n"," ")
             children_to_master_node.append(ParentNode(tag,text_to_nodes_to_children(new_lines_to_spaces)))
         if blocktype == BlockType.CODE:
+            block_children = []
             code_block = block.lstrip("```\n")
             code_block = code_block.rstrip("```")
             node = TextNode(code_block, TextType.CODE)
@@ -80,7 +80,9 @@ def strip_by_h_tag(tag: str) -> str:
         return("##### ")
     if tag == "h6":
         return("###### ")
-    
+
+#takes text as input and turns that text into text nodes which are then converted to html nodes
+#and appended to a list of children nodes for a parent html node    
 def text_to_nodes_to_children(text: str) -> list:
     children = []
     text_nodes = text_to_textnodes(text)
