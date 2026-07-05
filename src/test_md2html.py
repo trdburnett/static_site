@@ -78,5 +78,18 @@ the **same** even with inline stuff
             html,
             "<div><ul><li>This is an</li><li><b>unordered list</b></li><li>with 3 items</li></ul></div>"
         )
+
+    def test_ordered_list(self):
+        md = """
+1. This is an
+2. _ordered list_
+3. with 3 items
+"""
+        node = markdown_to_html(md)
+        html = node.to_html()
+        self.assertEqual(
+            html,
+            "<div><ol><li>This is an</li><li><i>ordered list</i></li><li>with 3 items</li></ol></div>"
+        )
 if __name__ == "__main__":
     unittest.main()
