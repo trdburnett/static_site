@@ -15,10 +15,7 @@ def markdown_to_html(markdown: str) -> HTMLNode:
         if blocktype == BlockType.PARAGRAPH:
             tag = "p"
             new_lines_to_spaces = block.replace("\n"," ")
-            text_nodes = text_to_textnodes(new_lines_to_spaces)
-            for node in text_nodes:
-                block_children.append(text_node_to_html_node(node))
-            children_to_master_node.append(ParentNode(tag,block_children))
+            children_to_master_node.append(ParentNode(tag,text_to_nodes_to_children(new_lines_to_spaces)))
         if blocktype == BlockType.CODE:
             code_block = block.lstrip("```\n")
             code_block = code_block.rstrip("```")
