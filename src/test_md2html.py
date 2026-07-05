@@ -50,10 +50,21 @@ the **same** even with inline stuff
 """
         node = markdown_to_html(md)
         html = node.to_html()
-        print(html)
         self.assertEqual(
             html,
             "<div><h1>This is a <b>h1</b> heading</h1><h2>This is a <i>h2</i> heading</h2><h3>This is a h3 heading</h3><h4>This is a h4 heading</h4><h5>This is a h5 heading</h5><h6>This is a h6 heading</h6></div>"
         )
+
+    def test_blockquote(self):
+        md = """
+> This is a **blockquote** 
+"""
+        node = markdown_to_html(md)
+        html = node.to_html()
+        self.assertEqual(
+            html,
+            "<div><blockquote>This is a <b>blockquote</b></blockquote></div>"
+        )
+
 if __name__ == "__main__":
     unittest.main()
