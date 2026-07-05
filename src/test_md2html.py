@@ -87,6 +87,7 @@ the **same** even with inline stuff
 """
         node = markdown_to_html(md)
         html = node.to_html()
+        print(html)
         self.assertEqual(
             html,
             "<div><ol><li>This is an</li><li><i>ordered list</i></li><li>with 3 items</li></ol></div>"
