@@ -12,6 +12,7 @@ def generate_public():
     #makes given directory
     os.mkdir("./public")
     print(os.path.exists("./public"))
+    print(os.listdir("./static"))
 
 generate_public()
 main()
