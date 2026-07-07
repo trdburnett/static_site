@@ -17,7 +17,7 @@ def generate_public(source,destination):
     for item in static:
         if "." in item:
             #adds file to given directory
-            shutil.copy(f"{source}{item}", destination)
+            shutil.copy(f"{source}/{item}", destination)
         else:
             print("found a directory")
     public = os.listdir(destination)
