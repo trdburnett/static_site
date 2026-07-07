@@ -26,6 +26,8 @@ def generate_public(source="./static",destination="./public"):
     print(static)
     public = os.listdir(destination)
     print(public)
+    if static != public:
+        raise Exception("Generation Error")
 
 
 generate_public()
