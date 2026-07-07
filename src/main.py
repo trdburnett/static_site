@@ -14,7 +14,7 @@ def generate_public(source="./static",destination="./public"):
     source_dir = os.listdir(source)
     #iterating over contents of source directory to add to destination directory
     for item in source_dir:
-        if "." in item:
+        if os.path.isfile(os.path.join(source, item)):
             #adds file to destination directory
             shutil.copy(os.path.join(source, item), destination)
         else:
