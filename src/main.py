@@ -22,11 +22,9 @@ def generate_public(source="./static",destination="./public"):
         else:
             #runs a recursive call and adds directory to destination directory
             generate_public(f"{source}/{item}", f"{destination}/{item}")
-    static = os.listdir(source)
-    print(static)
-    public = os.listdir(destination)
-    print(public)
-    if static != public:
+    #performs a check to see if the files and directories in the source and destination directories match
+    #raises an error if they do not match
+    if os.listdir(source) != os.listdir(destination):
         raise Exception("Generation Error")
 
 
