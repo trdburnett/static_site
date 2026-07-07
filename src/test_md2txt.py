@@ -1,6 +1,6 @@
 import unittest
 from textnode import TextNode, TextType
-from md2txt import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_image, split_nodes_link, text_to_textnodes, markdown_to_blocks, BlockType, block_to_block_type
+from md2txt import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_image, split_nodes_link, text_to_textnodes, markdown_to_blocks, BlockType, block_to_block_type, extract_title
 
 class Testmd2txt(unittest.TestCase):
     def test_empty_list(self):
@@ -361,6 +361,21 @@ This is a paragraph of text. It has some **bold** and _italic_ words inside of i
         md = "Nothing special here, this is just a paragraph"
         blocktype = block_to_block_type(md)
         self.assertEqual(blocktype, BlockType.PARAGRAPH)
+
+    def test_extract_title(self):
+        md = "# Hello"
+        string = extract_title(md)
+        self.assertEqual(string, "Hello")
+
+    def test_extract_title_leading_and_trailing_whitespace(self):
+        md = "#    Hello    "
+        string = extract_title(md)
+        self.assertEqual(string, "Hello")
+
+    def test_extract_title_wrong_header(self):
+        md = "## Hello"
+        with self.assertRaises(Exception):
+            string = extract_title(md)
 
 if __name__ == "__main__":
     unittest.main()

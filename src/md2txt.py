@@ -202,3 +202,10 @@ def block_to_block_type(markdown: str) -> BlockType:
     else:
         return BlockType.PARAGRAPH
 
+def extract_title(markdown: str) -> str:
+    if markdown.startswith("# "):
+        header_string = markdown.lstrip("#")
+        header_string = header_string.strip()
+        return header_string
+    else:
+        raise Exception("No Title!")
