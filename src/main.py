@@ -12,7 +12,14 @@ def generate_public():
     #makes given directory
     os.mkdir("./public")
     print(os.path.exists("./public"))
-    print(os.listdir("./static"))
+    #lists contents of static directory
+    static = os.listdir("./static")
+    for item in static:
+        if "." in item:
+            print("found a file")
+        else:
+            print("found a directory")
+
 
 generate_public()
 main()
