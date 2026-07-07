@@ -19,7 +19,7 @@ def generate_public(source,destination):
             #adds file to given directory
             shutil.copy(f"{source}/{item}", destination)
         else:
-            print("found a directory")
+            generate_public(f"{source}/{item}", f"{destination}/{item}")
     public = os.listdir(destination)
     print(public)
 
