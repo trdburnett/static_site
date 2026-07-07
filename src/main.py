@@ -6,10 +6,11 @@ def main():
 def generate_public(source,destination):
     #checks if the given path exists
     print(f"{destination} exists: {os.path.exists(destination)}")
-    #checks to see if destination directory exists if it does, the directory is removed and remade 
+    #checks to see if destination directory exists if it does it is removed 
     if os.path.exists(destination):
         shutil.rmtree(destination)
-        os.mkdir(destination)
+    #makes destination directory
+    os.mkdir(destination)
     print(f"{destination} exists: {os.path.exists(destination)}")
     #lists contents of source directory
     source_dir = os.listdir(source)
