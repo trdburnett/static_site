@@ -5,7 +5,7 @@ def main():
 
 def generate_public(source,destination):
     #checks if the given path exists
-    print(os.path.exists(destination))
+    print(f"{destination}exists: {os.path.exists(destination)}")
     #removes given directory
     shutil.rmtree(destination)
     print(os.path.exists(destination))
