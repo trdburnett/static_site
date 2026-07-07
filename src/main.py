@@ -3,26 +3,26 @@ def main():
     dummynode = textnode.TextNode("some text", textnode.TextType.LINK, "https://www.boot.dev")
     print(dummynode)
 
-def generate_public():
+def generate_public(source,destination):
     #checks if the given path exists
-    print(os.path.exists("./public"))
+    print(os.path.exists(destination))
     #removes given directory
-    shutil.rmtree("./public")
-    print(os.path.exists("./public"))
+    shutil.rmtree(destination)
+    print(os.path.exists(destination))
     #makes given directory
-    os.mkdir("./public")
-    print(os.path.exists("./public"))
+    os.mkdir(destination)
+    print(os.path.exists(destination))
     #lists contents of static directory
-    static = os.listdir("./static")
+    static = os.listdir(source)
     for item in static:
         if "." in item:
             #adds file to given directory
-            shutil.copy(f"./static/{item}", "./public")
+            shutil.copy(f"{source}{item}", destination)
         else:
             print("found a directory")
-    public = os.listdir("./public")
+    public = os.listdir(destination)
     print(public)
 
 
-generate_public()
+generate_public("./static","./public")
 main()
