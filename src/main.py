@@ -4,12 +4,13 @@ def main():
     dummynode = textnode.TextNode("some text", textnode.TextType.LINK, "https://www.boot.dev")
     print(dummynode)
 
-def generate_public(source="./static",destination="./public"):
-    #checks to see if destination directory exists if it does it is removed 
-    if os.path.exists(destination):
+def generate_public(source="./static",destination="./public", clean=True):
+    #checks to see if destination directory exists and if a clean directory is required removes the directory 
+    if clean and os.path.exists(destination):
         shutil.rmtree(destination)
-    #makes destination directory
-    os.mkdir(destination)
+    #checks to see if destination directory exists and if it does not, makes the destination directory
+    if not os.path.exists(destination):
+        os.makedirs(destination, exist_ok=True)
     #lists contents of source directory
     source_dir = os.listdir(source)
     #iterating over contents of source directory to add to destination directory
@@ -19,6 +20,6 @@ def generate_public(source="./static",destination="./public"):
             shutil.copy(os.path.join(source, item), destination)
         else:
             #runs a recursive call and adds directory to destination directory
-            generate_public(os.path.join(source, item), os.path.join(destination, item))
+            generate_public(os.path.join(source, item), os.path.join(destination, item), False)
 
 main()
