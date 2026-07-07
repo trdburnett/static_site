@@ -16,13 +16,9 @@ def generate_public(source="./static",destination="./public"):
     for item in source_dir:
         if "." in item:
             #adds file to destination directory
-            shutil.copy(f"{source}/{item}", destination)
+            shutil.copy(os.path.join(source, item), destination)
         else:
             #runs a recursive call and adds directory to destination directory
-            generate_public(f"{source}/{item}", f"{destination}/{item}")
-    #performs a check to see if the files and directories in the source and destination directories match
-    #raises an error if they do not match
-    if os.listdir(source) != os.listdir(destination):
-        raise Exception("Generation Error")
+            generate_public(os.path.join(source, item), os.path.join(destination, item))
 
 main()
