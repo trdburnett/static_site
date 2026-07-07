@@ -1,5 +1,6 @@
 import textnode, os, shutil
 def main():
+    generate_public()
     dummynode = textnode.TextNode("some text", textnode.TextType.LINK, "https://www.boot.dev")
     print(dummynode)
 
@@ -27,6 +28,4 @@ def generate_public(source="./static",destination="./public"):
     if os.listdir(source) != os.listdir(destination):
         raise Exception("Generation Error")
 
-
-generate_public()
 main()
