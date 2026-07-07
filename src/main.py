@@ -1,4 +1,5 @@
 import textnode, os, shutil
+from md2txt import extract_title    
 def main():
     generate_public()
     dummynode = textnode.TextNode("some text", textnode.TextType.LINK, "https://www.boot.dev")
@@ -21,5 +22,13 @@ def generate_public(source="./static",destination="./public", clean=True):
         else:
             #runs a recursive call and adds directory to destination directory
             generate_public(os.path.join(source, item), os.path.join(destination, item), False)
+
+def generate_page(from_path, template_path, dest_path):
+    print(f"Generating page from {from_path}, to {dest_path} using {template_path}")
+    from_file = open(from_path)
+    markdown = from_file.read()
+    template_file = open(template_path)
+    template = template_file.read()
+    
 
 main()
