@@ -3,7 +3,7 @@ def main():
     dummynode = textnode.TextNode("some text", textnode.TextType.LINK, "https://www.boot.dev")
     print(dummynode)
 
-def generate_public(source,destination):
+def generate_public(source="./static",destination="./public"):
     #checks if the given path exists
     print(f"{destination} exists: {os.path.exists(destination)}")
     #checks to see if destination directory exists if it does it is removed 
@@ -14,6 +14,7 @@ def generate_public(source,destination):
     print(f"{destination} exists: {os.path.exists(destination)}")
     #lists contents of source directory
     source_dir = os.listdir(source)
+    #iterating over contents of source directory to add to destination directory
     for item in source_dir:
         if "." in item:
             #adds file to destination directory
@@ -21,9 +22,11 @@ def generate_public(source,destination):
         else:
             #runs a recursive call and adds directory to destination directory
             generate_public(f"{source}/{item}", f"{destination}/{item}")
+    static = os.listdir(source)
+    print(static)
     public = os.listdir(destination)
     print(public)
 
 
-generate_public("./static","./public")
+generate_public()
 main()
