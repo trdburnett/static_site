@@ -63,5 +63,5 @@ for block in paragraph_blocks:
     #print(block)
     paragraph_text_nodes.append(text_to_textnodes(block))
 for node in paragraph_text_nodes:
-    #print(node)
-    print(text_node_to_html_node(node))
+    print(node)
+    #print(text_node_to_html_node(node))
