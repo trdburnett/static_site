@@ -42,7 +42,7 @@ def generate_page(from_path, template_path, dest_path):
     if os.path.isfile(dest_path):
         dest_file = open(dest_path, 'w')
     else:
-        dest_file = open(dest_path, 'x')
+        dest_file = open(dest_path, 'x+w')
     dest_file.write(template)
     dest_file.close()
 
