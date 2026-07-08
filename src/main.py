@@ -35,11 +35,8 @@ def generate_page(from_path, template_path, dest_path):
     content = markdown_to_html(markdown)
     content_html = content.to_html()
     title = extract_title(markdown)
-    if "{{ Title }}"  in template:
-        print("Yes")
-    template.replace("{{ Title }}", title)
-    print(template)
-    template.replace("{{ Content }}", content_html)
+    template = template.replace("{{ Title }}", title)
+    template = template.replace("{{ Content }}", content_html)
     dest_dir = os.path.dirname(dest_path)
     os.makedirs(dest_dir, exist_ok=True)
     if not os.path.isfile(dest_path):
