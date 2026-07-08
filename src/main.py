@@ -39,10 +39,10 @@ def generate_page(from_path, template_path, dest_path):
     template.replace("{{ Content }}", content_html)
     dest_dir = os.path.dirname(dest_path)
     os.makedirs(dest_dir, exist_ok=True)
-    if os.path.isfile(dest_path):
-        dest_file = open(dest_path, 'w')
-    else:
-        dest_file = open(dest_path, 'x+w')
+    if not os.path.isfile(dest_path):
+        dest_file = open(dest_path, 'x')
+        dest_file.close()
+    dest_file = open(dest_path, 'w')
     dest_file.write(template)
     dest_file.close()
 
