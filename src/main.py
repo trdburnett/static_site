@@ -1,6 +1,6 @@
 import textnode, os, shutil
 from md2txt import extract_title
-from md2html import markdown_to_html_node
+from md2html import markdown_to_html
 from htmlnode import HTMLNode    
 def main():
     generate_public()
@@ -32,7 +32,7 @@ def generate_page(from_path, template_path, dest_path):
     template_file = open(template_path)
     template = template_file.read()
     template_file.close()
-    content = markdown_to_html_node(markdown)
+    content = markdown_to_html(markdown)
     content_html = content.to_html()
     title = extract_title(markdown)
     template.replace("{{ Title }}", title)
