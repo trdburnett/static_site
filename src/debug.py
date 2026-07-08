@@ -57,8 +57,4 @@ This site was generated with a custom-built [static site generator](https://www.
 paragraph_blocks_md = ""
 for block in page_blocks:
     if block_to_block_type(block) == BlockType.PARAGRAPH:
-        paragraph_blocks_md = paragraph_blocks_md + "" + block
-    paragraph_text_nodes = text_to_textnodes(paragraph_blocks_md)
-for node in paragraph_text_nodes:
-    #print(node)
-    print(text_node_to_html_node(node))
+        print(block)
