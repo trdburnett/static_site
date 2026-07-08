@@ -1,4 +1,4 @@
-from md2txt import markdown_to_blocks, block_to_block_type, BlockType
+from md2txt import markdown_to_blocks, block_to_block_type, BlockType, text_to_textnodes
 #print("Debug is empty")
 page_blocks = (markdown_to_blocks("""# Tolkien Fan Club
 
@@ -54,8 +54,12 @@ This site was generated with a custom-built [static site generator](https://www.
 #    print(item)
 
 paragraph_blocks = []
+paragraph_text_nodes = []
 for block in page_blocks:
     if block_to_block_type(block) == BlockType.PARAGRAPH:
         paragraph_blocks.append(block)
 for block in paragraph_blocks:
-    print(block)
+    #print(block)
+    paragraph_text_nodes.append(text_to_textnodes(block))
+for node in paragraph_text_nodes:
+    print(node)
