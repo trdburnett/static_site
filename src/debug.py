@@ -50,4 +50,5 @@ This site was generated with a custom-built [static site generator](https://www.
 block_and_type = []
 for block in page_blocks:
     block_and_type.append((block, block_to_block_type(block)))
-print(block_and_type)
+for item in block_and_type:
+    print(item)
