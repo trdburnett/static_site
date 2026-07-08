@@ -60,7 +60,7 @@ for block in page_blocks:
     if block_to_block_type(block) == BlockType.PARAGRAPH:
         paragraph_blocks.append(block)
 for block in paragraph_blocks:
-    #print(block)
+    print(block)
     paragraph_text_nodes.append(text_to_textnodes(block))
 for node in paragraph_text_nodes:
     print(node)
