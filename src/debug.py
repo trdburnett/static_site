@@ -61,4 +61,5 @@ for block in page_blocks:
         text_nodes = text_to_textnodes(new_lines_to_spaces)
         for node in text_nodes:
             paragraph_html.append(text_node_to_html_node(node))
-print(paragraph_html)
+for html_node in paragraph_html:
+    print(html_node)
