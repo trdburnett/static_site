@@ -1,6 +1,6 @@
-from md2txt import markdown_to_blocks
+from md2txt import markdown_to_blocks, block_to_block_type
 #print("Debug is empty")
-print(markdown_to_blocks("""# Tolkien Fan Club
+page_blocks = (markdown_to_blocks("""# Tolkien Fan Club
 
 ![JRR Tolkien sitting](/images/tolkien.png)
 
@@ -46,3 +46,8 @@ func main(){
 Want to get in touch? [Contact me here](/contact).
 
 This site was generated with a custom-built [static site generator](https://www.boot.dev/courses/build-static-site-generator-python) from the course on [Boot.dev](https://www.boot.dev)."""))
+
+block_and_type = []
+for block in page_blocks:
+    block_and_type.append(block, block_to_block_type(block))
+print(block_and_type)
