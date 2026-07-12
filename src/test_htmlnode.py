@@ -27,7 +27,7 @@ class TestHTMLNode(unittest.TestCase):
 
     def test_leaf_to_html_image_tag(self):
         testnode = LeafNode("img", "", {'src': 'image_source', 'alt': 'alt_text'})
-        expected = "<img src=image_source alt=alt_text/>"
+        expected = "<img src=image_source alt=alt_text />"
         self.assertEqual(testnode.to_html(), expected)
 
     def test_leaf_to_html_link_tag(self):
