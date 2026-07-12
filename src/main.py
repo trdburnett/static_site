@@ -26,8 +26,11 @@ def generate_public(source="./static",destination="./public", clean=True):
 
 def generate_page(from_path, template_path, dest_path):
     print(f"Generating page from {from_path}, to {dest_path} using {template_path}")
+    #opens file from path
     from_file = open(from_path)
+    #reads from the open file assigned to from_file and copies the contents to the variable markdown
     markdown = from_file.read()
+    #closes the open file assigne to from_file
     from_file.close()
     template_file = open(template_path)
     template = template_file.read()
@@ -50,9 +53,7 @@ def generate_pages(dir_path_content, template_path, dest_dir_path):
     content_list = os.listdir(dir_path_content)
     print(content_list)
     for content in content_list:
-        print(os.path.isfile(os.path.join(dir_path_content, content)))
-        if os.path.isfile(content):
-            print("here")
+        if os.path.isfile(os.path.join(dir_path_content, content)):
             print(os.path.join(dir_path_content, content))
 
 generate_pages("./content","./template.html","./public")
