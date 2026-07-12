@@ -49,6 +49,9 @@ def generate_page(from_path, template_path, dest_path):
 def generate_pages(dir_path_content, template_path, dest_dir_path):
     content_list = os.listdir(dir_path_content)
     print(content_list)
+    for content in content_list:
+        if os.path.isfile(content):
+            print(os.path.join(dir_path_content, content))
 
 generate_pages("./content","./template.html","./public")
 
