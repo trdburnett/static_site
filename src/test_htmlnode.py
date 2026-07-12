@@ -26,12 +26,12 @@ class TestHTMLNode(unittest.TestCase):
         self.assertEqual(testnode.to_html(), expected)
 
     def test_leaf_to_html_image_tag(self):
-        testnode = LeafNode("img", "", None, {'src': 'image_source', 'alt': 'alt_text'})
+        testnode = LeafNode("img", "", {'src': 'image_source', 'alt': 'alt_text'})
         expected = "<img src=image_source alt=alt_text/>"
         self.assertEqual(testnode.to_html(), expected)
 
     def test_leaf_to_html_link_tag(self):
-        testnode = LeafNode("a", "link_name", none, {'href': 'https://www.link_here.com'})
+        testnode = LeafNode("a", "link_name", {'href': 'https://www.link_here.com'})
         expected = "<a href=https://www.link_here.com>link_name</a>"
         self.assertEqual(testnode.to_html(), expected)
 
