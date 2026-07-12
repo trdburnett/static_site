@@ -4,7 +4,8 @@ from md2html import markdown_to_html
 from htmlnode import HTMLNode    
 def main():
     generate_public()
-    generate_page("content/index.md", "template.html", "public/index.html")
+    #generate_page("content/index.md", "template.html", "public/index.html")
+    generate_pages("./content","./template.html","./public")
 
 def generate_public(source="./static",destination="./public", clean=True):
     #checks to see if destination directory exists and if a clean directory is required removes the directory 
@@ -54,10 +55,11 @@ def generate_pages(dir_path_content, template_path, dest_dir_path):
     print(content_list)
     for content in content_list:
         if os.path.isfile(os.path.join(dir_path_content, content)):
-            print(os.path.join(dir_path_content, content))
+            #print(os.path.join(dir_path_content, content))
+            from_path = os.path.join(dir_path_content, content)
+            dest_path = os.path.join(dest_dir_path, content)
+            generate_page(from_path, template_path, dest_path)
         else:
             generate_pages(os.path.join(dir_path_content, content), template_path, os.path.join(dest_dir_path, content))
-
-generate_pages("./content","./template.html","./public")
 
 main()
