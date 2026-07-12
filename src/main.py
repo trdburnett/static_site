@@ -47,9 +47,9 @@ def generate_page(from_path, template_path, dest_path):
     dest_file.close()
 
 def generate_pages(dir_path_content, template_path, dest_dir_path):
-    content_list = os.listdir("./content")
+    content_list = os.listdir(dir_path_content)
     print(content_list)
 
-generate_pages(None,None,None)
+generate_pages("./content","./template.html","./public")
 
 main()
