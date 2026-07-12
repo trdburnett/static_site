@@ -50,7 +50,7 @@ def generate_pages(dir_path_content, template_path, dest_dir_path):
     content_list = os.listdir(dir_path_content)
     print(content_list)
     for content in content_list:
-        print(os.path.isfile(os.path.join(dir_path_content, content))
+        print(os.path.isfile(os.path.join(dir_path_content, content)))
         if os.path.isfile(content):
             print("here")
             print(os.path.join(dir_path_content, content))
