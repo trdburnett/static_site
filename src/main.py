@@ -1,4 +1,4 @@
-import textnode, os, shutil
+import textnode, os, shutil, sys
 from md2txt import extract_title
 from md2html import markdown_to_html
 from htmlnode import HTMLNode    
@@ -6,6 +6,7 @@ def main():
     generate_public()
     #generate_page("content/index.md", "template.html", "public/index.html")
     generate_pages("./content","./template.html","./public")
+    print(sys.argv)
 
 def generate_public(source="./static",destination="./public", clean=True):
     #checks to see if destination directory exists and if a clean directory is required removes the directory 
