@@ -5,7 +5,7 @@ from htmlnode import HTMLNode
 def main():
     generate_public()
     #generate_page("content/index.md", "template.html", "public/index.html")
-    generate_pages("content","template.html","public")
+    generate_pages("./content","./template.html","./public")
 
 def generate_public(source="./static",destination="./public", clean=True):
     #checks to see if destination directory exists and if a clean directory is required removes the directory 
@@ -56,7 +56,9 @@ def generate_pages(dir_path_content, template_path, dest_dir_path):
         if os.path.isfile(os.path.join(dir_path_content, content)):
             #print(os.path.join(dir_path_content, content))
             from_path = os.path.join(dir_path_content, content)
-            dest_path = os.path.join(dest_dir_path, content)
+            root, ext = os.path.splitext(content)
+            new_content = root + ".html"
+            dest_path = os.path.join(dest_dir_path, new_content)
             generate_page(from_path, template_path, dest_path)
         else:
             generate_pages(os.path.join(dir_path_content, content), template_path, os.path.join(dest_dir_path, content))
