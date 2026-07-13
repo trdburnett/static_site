@@ -3,7 +3,7 @@ from md2txt import extract_title
 from md2html import markdown_to_html
 from htmlnode import HTMLNode    
 def main():
-    base_path = get_base_path
+    base_path = get_base_path()
     print(base_path)
     generate_public()
     #generate_page("content/index.md", "template.html", "public/index.html")
