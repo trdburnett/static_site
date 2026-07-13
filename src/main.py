@@ -2,12 +2,19 @@ import textnode, os, shutil, sys
 from md2txt import extract_title
 from md2html import markdown_to_html
 from htmlnode import HTMLNode    
+
+def get_base_path():
+    if sys.argv == []:
+        return "/"
+    else:
+        return sys.argv[0]
+
+base_path = get_base_path()
+
 def main():
-    base_path = get_base_path()
-    print(base_path)
     generate_public()
     #generate_page("content/index.md", "template.html", "public/index.html")
-    generate_pages("./content","./template.html","./public")
+    generate_pages(f"{base_path}/content",f"{base_path}/template.html",f"{base_path}/public")
 
 def generate_public(source="./static",destination="./public", clean=True):
     #checks to see if destination directory exists and if a clean directory is required removes the directory 
@@ -27,7 +34,7 @@ def generate_public(source="./static",destination="./public", clean=True):
             #runs a recursive call and adds directory to destination directory
             generate_public(os.path.join(source, item), os.path.join(destination, item), False)
 
-def generate_page(from_path, template_path, dest_path):
+def generate_page(from_path, template_path, dest_path, base_path):
     print(f"Generating page from {from_path}, to {dest_path} using {template_path}")
     #opens file from path
     from_file = open(from_path)
@@ -43,6 +50,8 @@ def generate_page(from_path, template_path, dest_path):
     title = extract_title(markdown)
     template = template.replace("{{ Title }}", title)
     template = template.replace("{{ Content }}", content_html)
+    template = template.replace("href=\"/", f"href=\"{base_path}")
+    template = template.replace("src=\"/", f"src=\"{base_path}")
     dest_dir = os.path.dirname(dest_path)
     os.makedirs(dest_dir, exist_ok=True)
     if not os.path.isfile(dest_path):
@@ -61,14 +70,8 @@ def generate_pages(dir_path_content, template_path, dest_dir_path):
             root, ext = os.path.splitext(content)
             new_content = root + ".html"
             dest_path = os.path.join(dest_dir_path, new_content)
-            generate_page(from_path, template_path, dest_path)
+            generate_page(from_path, template_path, dest_path, base_path)
         else:
             generate_pages(os.path.join(dir_path_content, content), template_path, os.path.join(dest_dir_path, content))
-
-def get_base_path():
-    if sys.argv == []:
-        return "/"
-    else:
-        return sys.argv[0]
 
 main()
