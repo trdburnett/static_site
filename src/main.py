@@ -3,10 +3,11 @@ from md2txt import extract_title
 from md2html import markdown_to_html
 from htmlnode import HTMLNode    
 def main():
+    base_path = get_base_path
+    print(base_path)
     generate_public()
     #generate_page("content/index.md", "template.html", "public/index.html")
     generate_pages("./content","./template.html","./public")
-    print(sys.argv)
 
 def generate_public(source="./static",destination="./public", clean=True):
     #checks to see if destination directory exists and if a clean directory is required removes the directory 
@@ -63,5 +64,11 @@ def generate_pages(dir_path_content, template_path, dest_dir_path):
             generate_page(from_path, template_path, dest_path)
         else:
             generate_pages(os.path.join(dir_path_content, content), template_path, os.path.join(dest_dir_path, content))
+
+def get_base_path():
+    if sys.argv == []:
+        return "/"
+    else:
+        return sys.argv[0]
 
 main()
