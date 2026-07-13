@@ -16,9 +16,9 @@ base_path = get_base_path()
 def main():
     generate_public()
     #generate_page("content/index.md", "template.html", "public/index.html")
-    generate_pages(f"{base_path}content",f"{base_path}template.html",f"{base_path}public")
+    generate_pages(f"{base_path}content",f"{base_path}template.html",f"{base_path}docs")
 
-def generate_public(source=f"{base_path}static",destination=f"{base_path}public", clean=True):
+def generate_public(source=f"{base_path}static",destination=f"{base_path}docs", clean=True):
     #checks to see if destination directory exists and if a clean directory is required removes the directory 
     if clean and os.path.exists(destination):
         shutil.rmtree(destination)
