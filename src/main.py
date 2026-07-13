@@ -6,6 +6,8 @@ from htmlnode import HTMLNode
 def get_base_path():
     if sys.argv == []:
         return "/"
+    elif sys.argv[0].endswith(".py"):
+        return "/"
     else:
         return sys.argv[0]
 
