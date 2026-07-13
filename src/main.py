@@ -9,7 +9,6 @@ def get_base_path():
     elif sys.argv[0].endswith(".py"):
         return "/"
     else:
-        print(sys.argv[0])
         return sys.argv[0]
 
 base_path = get_base_path()
