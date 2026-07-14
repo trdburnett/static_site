@@ -3,13 +3,12 @@ from md2txt import extract_title
 from md2html import markdown_to_html
 from htmlnode import HTMLNode    
 
+#get the base path. IMPORTANT sys.argv[1] is the first CLI argument NOT sys.argv[0] which is the script itself
 def get_base_path():
-    if sys.argv == []:
-        return "/"
-    elif sys.argv[0].endswith(".py"):
-        return "/"
+    if len(sys.argv) > 1:
+        return sys.argv[1]
     else:
-        return sys.argv[0]
+        return "/"
 
 base_path = get_base_path()
 
