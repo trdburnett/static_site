@@ -62,7 +62,7 @@ def generate_page(from_path, template_path, dest_path, base_path):
     dest_file.write(template)
     dest_file.close()
 
-def generate_pages(dir_path_content, template_path, dest_dir_path):
+def generate_pages(dir_path_content, template_path, dest_dir_path, base_path):
     content_list = os.listdir(dir_path_content)
     for content in content_list:
         if os.path.isfile(os.path.join(dir_path_content, content)):
