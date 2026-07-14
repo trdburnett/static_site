@@ -12,6 +12,7 @@ def get_base_path():
 
 def main():
     base_path = get_base_path()
+    print(f"Using basepath: {base_path}")
     generate_public()
     #generate_page("content/index.md", "template.html", "public/index.html")
     generate_pages("./content","./template.html","./docs", base_path)
