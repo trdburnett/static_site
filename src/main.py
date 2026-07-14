@@ -10,12 +10,11 @@ def get_base_path():
     else:
         return "/"
 
-base_path = get_base_path()
-
 def main():
+    base_path = get_base_path()
     generate_public()
     #generate_page("content/index.md", "template.html", "public/index.html")
-    generate_pages("./content","./template.html","./docs")
+    generate_pages("./content","./template.html","./docs", base_path)
 
 def generate_public(source="./static",destination="./docs", clean=True):
     #checks to see if destination directory exists and if a clean directory is required removes the directory 
