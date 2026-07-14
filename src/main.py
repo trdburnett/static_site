@@ -72,6 +72,6 @@ def generate_pages(dir_path_content, template_path, dest_dir_path, base_path):
             dest_path = os.path.join(dest_dir_path, new_content)
             generate_page(from_path, template_path, dest_path, base_path)
         else:
-            generate_pages(os.path.join(dir_path_content, content), template_path, os.path.join(dest_dir_path, content, base_path))
+            generate_pages(os.path.join(dir_path_content, content), template_path, os.path.join(dest_dir_path, content), base_path)
 
 main()
