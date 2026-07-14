@@ -36,6 +36,7 @@ def generate_public(source="./static",destination="./docs", clean=True):
             generate_public(os.path.join(source, item), os.path.join(destination, item), False)
 
 def generate_page(from_path, template_path, dest_path, base_path):
+    print(f"generate_page basepath: {base_path}")
     print(f"Generating page from {from_path}, to {dest_path} using {template_path}")
     #opens file from path
     from_file = open(from_path)
